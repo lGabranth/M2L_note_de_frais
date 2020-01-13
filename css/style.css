@@ -1,0 +1,11 @@
+body{
+	/*background: linear-gradient(to right, rgba(0, 120, 250, 1) 70%, rgba(0, 120, 250) 100%);*/
+	background-color: #D2D7D3;
+}
+
+.bloc {
+	background-color: #FFFFFF;
+	border: 1px solid black;
+	border-radius: 15px;
+	font-family: 'Poppins', sans-serif;
+}
