@@ -56,11 +56,11 @@
 						</div>
 					</div>
 
-					<button class="btn btn-sm btn-info mt-4" @click="OuvrirModalAjout"><i class="fas fa-plus"></i> Ajouter</button>
+					<button class="btn btn-sm btn-success mt-4" @click="OuvrirModalAjout"><i class="fas fa-plus"></i> Ajouter</button>
 
 					<div class="table-responsive mt-4">
 					  <table class="table table-hover">
-					    <thead>
+					    <thead class="thead-dark">
 					    	<tr class="text-center">
 					    		<th scope="col">#</th>
 					    		<th scope="col">Ligue</th>
