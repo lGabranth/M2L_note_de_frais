@@ -12,6 +12,8 @@ function Head($titre, $menu){ ?>
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo RACINE_GLOBAL_RELATIF ?>css/bootstrap.css">
     <link rel="stylesheet" href="<?php echo RACINE_GLOBAL_RELATIF ?>css/style.css">
+    <link rel="stylesheet" href="<?php echo RACINE_GLOBAL_RELATIF ?>css/animate.min.css">
+    <link rel="stylesheet" href="<?php echo RACINE_GLOBAL_RELATIF ?>css/notify.css">
     <script src="https://kit.fontawesome.com/34d151f234.js" crossorigin="anonymous"></script>
   </head>
   <body>
@@ -20,7 +22,7 @@ function Head($titre, $menu){ ?>
 
 function Menu($menu){ ?>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="menu">
-	  <a class="navbar-brand <?php echo ($menu == 1) ? 'active' : ''; ?>" href="#">M2L NDF</a>
+	  <a class="navbar-brand <?php echo ($menu == 1) ? 'active' : 'text-white-50'; ?>" href="<?php echo RACINE_GLOBAL_RELATIF ?>index.php">M2L NDF</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
@@ -39,7 +41,7 @@ function Menu($menu){ ?>
 		    <?php } ?>
 		    <?php if($_SESSION["id_grp_user"] == 1) {?>
 		    	<li class="nav-item">
-		        <a class="nav-link" href="#">Gestion des ligues</a>
+		        <a class="nav-link <?php echo ($menu == 2) ? 'active' : '' ?>" href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/gestion_ligue">Gestion des ligues</a>
 		      </li>
 		      <li class="nav-item">
 		        <a class="nav-link" href="#">Gestion des directeurs</a>
@@ -60,7 +62,8 @@ function Menu($menu){ ?>
 	</nav>
 <?php }
 
-function Footer(){ ?>
+function Footer($path_supplementaire = ''){ ?>
+	<?php $path_supplementaire = (isset($path_supplementaire) && !empty($path_supplementaire)) ? $path_supplementaire : ''; ?>
     <script>
     	RACINE_GLOBAL_RELATIF = '<?php echo RACINE_GLOBAL_RELATIF ?>';
     </script>
@@ -76,6 +79,9 @@ function Footer(){ ?>
 			  $('[data-toggle="tooltip"]').tooltip()
 			})
     </script>
+    <?php if($path_supplementaire != '') {?>
+    	<script src='<?php echo $path_supplementaire ?>'></script>
+    <?php } ?>
   </body>
 </html>
 <?php }

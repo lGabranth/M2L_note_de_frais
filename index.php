@@ -1,10 +1,12 @@
-<?php include('0-config/config-genos.php'); ?>
+<?php include('0-config/config-genos.php'); 
+if(empty($_SESSION) || $_SESSION["id_user"] <= 0) header('Location:login.php');
+?>
 <?php Head('Accueil', 1); ?>
 	<div class="container">
 		<div class="row">
 			<div class="col">
 				<h2 class="mt-2 text-center">
-					Bienvenue, <span class="text-primary"><?php echo $_SESSION['prenom_user'].' '.$_SESSION['nom_user'] ?>.</span>
+					Bienvenue, <span class="text-primary"><?php echo $_SESSION['prenom_user'].' '.$_SESSION['nom_user'] ?></span>.
 				</h2>
 			</div>
 		</div>
@@ -17,7 +19,7 @@
 				    	<h5 class="card-title">Gestion des ligues</h5>
 				    	<p class="card-text">Permet de créer/modifier/supprimer des ligues.</p>
 				    	<div class="text-right">
-				    		<a href="#" class="btn btn-primary">Aller</a>
+				    		<a href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/gestion_ligue" class="btn btn-primary">Aller</a>
 				    	</div>
 				  	<?php } ?>
 				  	<?php if($_SESSION['id_grp_user'] == 2 || $_SESSION['id_grp_user'] == 3) {?>
