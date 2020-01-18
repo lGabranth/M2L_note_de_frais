@@ -9,7 +9,7 @@ $id_utilisateur = (isset($_POST['id_utilisateur']) && !empty($_POST['id_utilisat
 switch ($cas) {
 	case 'liste_ligues':
 		$l = new ligue;
-		$req = 'SELECT l.id, l.nom, CONCAT(u.nom," ",u.prenom) as directeur, l.id_utilisateur 
+		$req = 'SELECT l.id, l.nom, COALESCE(CONCAT(u.nom," ",u.prenom), "") as directeur, l.id_utilisateur 
 						FROM ligue l LEFT JOIN utilisateur u ON l.id_utilisateur = u.id 
 						ORDER BY l.nom ';
 		$champs = array('id','nom','directeur','id_utilisateur');

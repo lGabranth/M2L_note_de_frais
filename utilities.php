@@ -50,7 +50,7 @@ function Menu($menu){ ?>
 	    </ul>
 	    <div class="my-2 my-lg-0">
 	    	<?php if($_SESSION["id_grp_user"] != 1) {?>
-	    		<a href="" data-toggle="tooltip" data-placement="bottom" title="Profil"><i class="fas fa-user fa-lg"></i></a> &nbsp;
+	    		<a href="#" data-toggle="tooltip" data-placement="bottom" title="Profil"><i class="fas fa-user fa-lg text-info"></i></a> &nbsp;
 	    	<?php } ?>
 	    	<a href="#" @click="Deconnexion" data-toggle="tooltip" data-placement="bottom" title="Se déconnecter"><i class="fas fa-power-off text-danger fa-lg"></i></a>
 	    </div>
