@@ -68,6 +68,7 @@ switch ($cas) {
 	break;
 
 	case 'modif_ligue':
+		#On charge les changements et on modifie la ligue
 		$l = new ligue;
 		$l->id = $id;
 		$l->Load();
@@ -75,12 +76,15 @@ switch ($cas) {
 		$l->LoadForm();
 		$l->Update();
 
-		$u = new utilisateur;
-		$u->id = $id_utilisateur;
-		$u->Load();
-		$u->id_ligue = $id;
-		if($u->id_groupe_utilisateur == 3) $u->id_groupe_utilisateur = 2;
-		$u->Update();
+		if($id_utilisateur > 0){
+			#On rajoute la ligue à l'utilisateur que l'on a passé en admin et si il n'était pas de rang directeur, on le passe directeur.
+			$u = new utilisateur;
+			$u->id = $id_utilisateur;
+			$u->Load();
+			$u->id_ligue = $id;
+			if($u->id_groupe_utilisateur == 3) $u->id_groupe_utilisateur = 2;
+			$u->Update();
+		}
 	break;
 
 	case 'suppr_ligue':
@@ -91,6 +95,7 @@ switch ($cas) {
 		$l->Load();
 		$l->Delete();
 
+		#On supprime tous les id_ligue des agents liés à la ligue que l'on vient de delete
 		$bind = array('id_ligue'=>$id);
 		$req = "UPDATE utilisateur SET id_ligue = 0 WHERE id_ligue = :id_ligue ";
 		$u->Sql($req, $bind);

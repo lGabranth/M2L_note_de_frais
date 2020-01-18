@@ -120,6 +120,7 @@ var vue = new Vue({
 					Notify('success',`Ligue "${scope.modif.nom}" modifiée`);
 					scope.GetListeLigue();
 					$('#modal_modif').modal('hide');
+					scope.GetListeUtilisateur();
 					scope.modif = {};
 				},
 				error:function(){
