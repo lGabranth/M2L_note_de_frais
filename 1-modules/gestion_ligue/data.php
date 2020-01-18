@@ -72,10 +72,19 @@ switch ($cas) {
 		$l = new ligue;
 		$l->id = $id;
 		$l->Load();
+		if($l->id_utilisateur != $id_utilisateur) $ancien_directeur = $l->id_utilisateur;
+		else $ancien_directeur = 0;
 
 		$l->LoadForm();
 		$l->Update();
 
+		if($ancien_directeur > 0){
+			$u_old = new utilisateur;
+			$u_old->id = $ancien_directeur;
+			$u_old->Load();
+			$u_old->id_groupe_utilisateur = 3;
+			$u_old->Update();
+		}
 		if($id_utilisateur > 0){
 			#On rajoute la ligue à l'utilisateur que l'on a passé en admin et si il n'était pas de rang directeur, on le passe directeur.
 			$u = new utilisateur;
