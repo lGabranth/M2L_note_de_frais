@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 14 jan. 2020 à 16:47
+-- Généré le :  lun. 20 jan. 2020 à 17:09
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.2.18
 
@@ -69,14 +69,15 @@ CREATE TABLE IF NOT EXISTS `ligue` (
   `nom` varchar(50) NOT NULL,
   `id_utilisateur` int(11) NOT NULL COMMENT 'id du directeur de la ligue',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `ligue`
 --
 
 INSERT INTO `ligue` (`id`, `nom`, `id_utilisateur`) VALUES
-(1, 'ligue du test !', 2);
+(1, 'ligue du test !', 0),
+(3, 'ligue_test_final', 2);
 
 -- --------------------------------------------------------
 
@@ -126,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `login` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `vacataire` tinyint(4) NOT NULL,
-  `date_validite` datetime DEFAULT NULL,
+  `date_validite` date DEFAULT NULL,
   `id_groupe_utilisateur` int(11) NOT NULL,
   `id_ligue` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
@@ -139,8 +140,8 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 
 INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `login`, `password`, `vacataire`, `date_validite`, `id_groupe_utilisateur`, `id_ligue`) VALUES
 (1, 'Administrateur', 'Utilisateur', 'admin', 'ec04321e2c7bf2e0b01bac41896796b19f22a244', 0, NULL, 1, 0),
-(2, 'Test', 'Directeur', 'testdir', '113d51b228a815d07c767ae7689629b620faa929', 0, NULL, 2, 1),
-(3, 'Utilisateur', 'Test', 'testuser', 'ed11b7fa909a2a859cfb4f7f386c22db5d96e2b2', 0, NULL, 3, 0);
+(2, 'Test', 'Directeur', 'testdir', '113d51b228a815d07c767ae7689629b620faa929', 0, NULL, 2, 3),
+(3, 'Utilisateur', 'Test', 'testuser', 'ed11b7fa909a2a859cfb4f7f386c22db5d96e2b2', 0, NULL, 3, 3);
 
 --
 -- Contraintes pour les tables déchargées
