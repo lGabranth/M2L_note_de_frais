@@ -22,3 +22,17 @@ body {
 .card:hover{
 	transform: scale(1.1);
 }
+
+.titre-modifier{
+	font-variant: small-caps;
+	color: #FFA631;
+	text-shadow: 0.5px 0.5px 1px black;
+	font-size: 1.2em;
+}
+
+.titre-supprimer{
+	font-variant: small-caps;
+	color: #CF3A24;
+	text-shadow: 0.5px 0.5px 1px black;
+	font-size: 1.2em;
+}
