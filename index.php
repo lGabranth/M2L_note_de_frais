@@ -10,7 +10,7 @@ if(empty($_SESSION) || $_SESSION["id_user"] <= 0) header('Location:login.php');
 				</h2>
 			</div>
 		</div>
-
+		
 		<div class="row mt-4">
 			<div class="col">
 				<div class="card">

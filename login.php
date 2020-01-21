@@ -2,10 +2,9 @@
 
 <?php Head('Connexion', 0); ?>
 
-	<div class="container mt-5">
-		<div class="row">
-			<div class="col-3"></div>
-			<div class="col-6 bloc">
+	<div class="container h-100">
+		<div class="row h-100">
+			<div class="offset-md-3 col-md-6 bloc my-auto">
 				<h1 class="mt-2 text-center">Connexion</h1>
 				<hr>
 					<?php
@@ -48,7 +47,6 @@
 					</div>
 				</form>
 			</div>
-			<div class="col-3"></div>
 		</div>
 	</div>
 
