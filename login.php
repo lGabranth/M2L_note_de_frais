@@ -4,7 +4,7 @@
 
 	<div class="container h-100">
 		<div class="row h-100">
-			<div class="offset-md-3 col-md-6 bloc my-auto">
+			<div id="bloc_de_connexion" class="offset-md-3 col-md-6 bloc my-auto <?php echo (isset($_POST['submit'])) ? '' : 'fade-in' ?>">
 				<h1 class="mt-2 text-center">Connexion</h1>
 				<hr>
 					<?php
@@ -43,7 +43,7 @@
 					</div>
 					
 					<div class="text-right">
-						<input type="submit" name="submit" class="btn btn-success mb-3" value="Connexion">
+						<input type="submit" name="submit" class="btn btn-degrade mb-3" value="Connexion">
 					</div>
 				</form>
 			</div>

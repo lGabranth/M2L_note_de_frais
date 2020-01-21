@@ -1,7 +1,7 @@
 <?php 
 function Head($titre, $menu){ ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <title><?php echo $titre ?></title>
     <!-- Required meta tags -->
