@@ -21,8 +21,8 @@ function Head($titre, $menu){ ?>
 <?php }
 
 function Menu($menu){ ?>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="menu">
-	  <a class="navbar-brand <?php echo ($menu == 1) ? 'active' : 'text-white-50'; ?>" href="<?php echo RACINE_GLOBAL_RELATIF ?>index.php">M2L NDF</a>
+	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgba(43, 43, 53, 0.6);" id="menu">
+	  <a class="navbar-brand <?php echo ($menu == 1) ? 'active' : 'text-white-50'; ?>" href="<?php echo RACINE_GLOBAL_RELATIF ?>index.php">N2F</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>

@@ -18,6 +18,15 @@ body {
 	/*font-family: 'Poppins', sans-serif;*/
 }
 
+.bloc-module {
+	background-color: rgba(255, 255, 255, 0.2);
+	border: 1px solid black;
+	box-shadow: 3px 3px 30px black;
+	border-radius: 15px;
+	/*transition: 1s all;*/
+	/*font-family: 'Poppins', sans-serif;*/
+}
+
 .fade-in {
 	opacity: 1;
 	animation-name: fadeInOpacity;
@@ -42,6 +51,14 @@ body {
 
 .card{
 	transition: all 1s;
+}
+
+#card1, #card2, #card3{
+	box-shadow: 2px 1px 2px black;
+}
+
+#card1:hover, #card2:hover, #card3:hover{
+	box-shadow: 4px 4px 15px black;
 }
 
 .card:hover{

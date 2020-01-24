@@ -11,9 +11,10 @@ if(empty($_SESSION) || $_SESSION["id_user"] <= 0) header('Location:login.php');
 			</div>
 		</div>
 		
-		<div class="row mt-4">
-			<div class="col">
-				<div class="card">
+		<div class="row mt-2">
+			<div class="col-md mt-3">
+				<div class="card" id="card1">
+				<!-- <div class="card" style="box-shadow: 3px 3px 5px black;"> -->
 				  <div class="card-body">
 				  	<?php if($_SESSION['id_grp_user'] == 1) {?>
 				    	<h5 class="card-title">Gestion des ligues</h5>
@@ -33,8 +34,8 @@ if(empty($_SESSION) || $_SESSION["id_user"] <= 0) header('Location:login.php');
 				</div>
 			</div>
 
-			<div class="col">
-				<div class="card">
+			<div class="col-md mt-3">
+				<div class="card" id="card2">
 				  <div class="card-body">
 				  	<?php if($_SESSION['id_grp_user'] == 1) {?>
 				    	<h5 class="card-title">Gestion des directeurs</h5>
@@ -62,8 +63,8 @@ if(empty($_SESSION) || $_SESSION["id_user"] <= 0) header('Location:login.php');
 			</div>
 
 			<?php if($_SESSION['id_grp_user'] == 2) {?>
-				<div class="col">
-					<div class="card">
+				<div class="col-md">
+					<div class="card" id="card3">
 				  <div class="card-body">
 			    	<h5 class="card-title">Mon profil</h5>
 			    	<p class="card-text">Voir et modifier mon profil.</p>

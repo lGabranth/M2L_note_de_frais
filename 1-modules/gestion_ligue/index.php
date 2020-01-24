@@ -112,14 +112,17 @@ if($_SESSION['id_grp_user'] != 1) header('Location:'.RACINE_GLOBAL_RELATIF.'inde
 		</div>
 
 		<div class="container mt-4">
-			<div class="row">
-				<h1 class="ml-3">Gestion des ligues</h1>
+			<div class="row text-center">
+				<div class="col">
+					<h1>Gestion des ligues</h1>
+				</div>
 			</div>
 			<div class="row">
 				<div class="col separation"></div>
 			</div>
 			<div class="row mt-4">
-				<div class="col bloc">
+				<div class="col">
+				<!-- <div class="col bloc-module"> -->
 					<div class="input-group mt-2">
 						<input type="search" class="form-control form-control-sm" placeholder="Recherche une ligue" v-model='recherche'>
 						<div class="input-group-append">
@@ -129,8 +132,8 @@ if($_SESSION['id_grp_user'] != 1) header('Location:'.RACINE_GLOBAL_RELATIF.'inde
 
 					<button class="btn btn-sm btn-success mt-4" @click="OuvrirModalAjout"><i class="fas fa-plus"></i> Ajouter</button>
 
-					<div class="table-responsive mt-4">
-					  <table class="table table-hover">
+					<div class="table-responsive mt-4 table-light" style="box-shadow: 2px 2px 3px black;">
+					  <table class="table table-hover table-striped">
 					    <thead class="thead-dark">
 					    	<tr class="text-center">
 					    		<th scope="col">#</th>
