@@ -1,6 +1,7 @@
 <?php include('../../0-config/config-genos.php'); 
 
 $cas           = $_GET['cas'];
+$id         	 = (isset($_POST['id'])         	 && !empty($_POST['id']))         	 ? $_POST['id']         	 : '';
 $login         = (isset($_POST['login'])         && !empty($_POST['login']))         ? $_POST['login']         : '';
 $password      = (isset($_POST['password'])      && !empty($_POST['password']))      ? $_POST['password']      : '';
 $nom           = (isset($_POST['nom'])           && !empty($_POST['nom']))           ? $_POST['nom']           : '';
@@ -57,6 +58,30 @@ switch ($cas) {
 		$u->password = sha1(md5($login.$password));
 
 		$u->Add();
+		echo 1;
+	break;
+
+	case 'modif_salarie':
+		if($prenom == '' || $nom == '' || $login == ''){
+			echo -1;
+			return;
+		}
+
+		$u = new utilisateur;
+		$u->id = $id;
+		$u->Load();
+		$u->LoadForm();
+		if($vacataire == 0) $u->date_validite = NULL;
+		$u->Update();
+
+		echo 1;
+	break;
+
+	case 'suppr_salarie':
+		$u = new utilisateur;
+		$u->id = $id;
+		$u->Load();
+		$u->Delete();
 		echo 1;
 	break;
 }

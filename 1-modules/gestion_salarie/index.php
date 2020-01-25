@@ -100,12 +100,7 @@ if($_SESSION['id_ligue'] == 0) header('Location:'.RACINE_GLOBAL_RELATIF.'index.p
 		        	<div class="row">
 		        		<div class="col">
 		        			<label for="login" class="mt-3">Login <sup class="text-danger">*</sup> : </label>
-		        			<input type="text" class="form-control form-control-sm" id="modif_login" v-model="modif.login" placeholder="Identifiant de connexion">
-		        			<div class="ml-1">
-		        				<small v-show="verif_dispo_login == 0">Veuillez saisir un login</small>
-		        				<small v-show="verif_dispo_login == -1" class="text-danger">Ce login n'est pas disponible</small>
-		        				<small v-show="verif_dispo_login == 1" class="text-success">Ce login est disponible</small>
-		        			</div>
+		        			<input type="text" class="form-control form-control-sm" id="modif_login" v-model="modif.login" placeholder="Identifiant de connexion" readonly>
 		        		</div>
 		        	</div>
 
@@ -133,18 +128,18 @@ if($_SESSION['id_ligue'] == 0) header('Location:'.RACINE_GLOBAL_RELATIF.'index.p
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Annuler</button>
-		        <button type="button" class="btn btn-sm btn-success">Sauvegarder</button>
+		        <button type="button" class="btn btn-sm btn-success" @click="ModifierUtilisateur">Sauvegarder</button>
 		      </div>
 		    </div>
 		  </div>
 		</div>
 
 		<!-- Modal de suppression d'une ligue -->
-		<!-- <div class="modal fade" id="modal_suppr" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal fade" id="modal_suppr" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <h5 class="modal-title">Supprimer <span class="titre-supprimer">{{ suppr.nom }}</span></h5>
+		        <h5 class="modal-title">Supprimer <span class="titre-supprimer">{{ suppr.prenom+' '+suppr.nom }}</span></h5>
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		        </button>
@@ -153,11 +148,11 @@ if($_SESSION['id_ligue'] == 0) header('Location:'.RACINE_GLOBAL_RELATIF.'index.p
 		      	<div class="container-fluid">
 		      		<div class="row">
 		      			<div class="col text-center">
-		        			<p>Êtes-vous certain de vouloir supprimer cette ligue ?</p>
+		        			<p>Êtes-vous certain de vouloir supprimer cet utilisateur ?</p>
 		      				
 		      				<div class="row">
 		      					<div class="col">
-		      						<button class="btn btn-lg btn-success" @click="SupprimerLigue">OUI</button>
+		      						<button class="btn btn-lg btn-success" @click="SupprimerUtilisateur">OUI</button>
 		      						<button class="btn btn-lg btn-danger" data-dismiss="modal">NON</button>
 		      					</div>
 		      				</div>
@@ -167,7 +162,7 @@ if($_SESSION['id_ligue'] == 0) header('Location:'.RACINE_GLOBAL_RELATIF.'index.p
 		      </div>
 		    </div>
 		  </div>
-		</div> -->
+		</div>
 
 		<div class="container mt-4">
 			<div class="row text-center">
@@ -183,7 +178,7 @@ if($_SESSION['id_ligue'] == 0) header('Location:'.RACINE_GLOBAL_RELATIF.'index.p
 					<h3 class="mt-3">Gestion des salariés de <span class="text-primary"><?php echo $_SESSION['nom_ligue'] ?></span></h3>
 					<hr>
 					<div class="input-group mt-2">
-						<input type="search" class="form-control form-control-sm" placeholder="Recherche un salarié" v-model='recherche'>
+						<input type="search" class="form-control form-control-sm" placeholder="Recherche un salarié/vacataire" v-model='recherche'>
 						<div class="input-group-append">
 							<button class="btn btn-sm btn-primary"><i class="fas fa-search"></i> Rechercher</button>
 						</div>
@@ -204,7 +199,7 @@ if($_SESSION['id_ligue'] == 0) header('Location:'.RACINE_GLOBAL_RELATIF.'index.p
 					    		<th scope="col">Identité</th>
 					    		<th scope="col">Ligue</th>
 					    		<th>Modifier</th>
-					    		<!-- <th>Supprimer</th> -->
+					    		<th>Supprimer</th>
 					    	</tr>
 					    </thead>
 					    <tbody>
@@ -216,7 +211,7 @@ if($_SESSION['id_ligue'] == 0) header('Location:'.RACINE_GLOBAL_RELATIF.'index.p
 					    		<td>{{ u.prenom+' '+u.nom }}</td>
 					    		<td>{{ u.ligue }}</td>
 					    		<td><button class="btn btn-sm btn-warning" @click="OuvrirModalModif(u)"><i class="fas fa-edit"></i></button></td>
-					    		<!-- <td><button class="btn btn-sm btn-danger" @click="OuvrirModalSuppr(u)"><i class="fas fa-trash"></i></button></td> -->
+					    		<td><button class="btn btn-sm btn-danger" @click="OuvrirModalSuppr(u)"><i class="fas fa-trash"></i></button></td>
 					    	</tr>
 					    </tbody>
 					  </table>

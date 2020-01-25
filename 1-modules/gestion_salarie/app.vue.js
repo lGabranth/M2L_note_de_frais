@@ -13,7 +13,6 @@ const gestion_salarie = new Vue({
 			date_validite:'',
 		},
 		modif:{},
-		ancien_login:'',
 		suppr:{},
 
 		verif_dispo_login:0,
@@ -61,6 +60,7 @@ const gestion_salarie = new Vue({
 		},
 
 		OuvrirModalAjout:function(){
+			this.verif_dispo_login = 0;
 			$('#modal_ajout').modal('show');
 		},
 
@@ -98,25 +98,79 @@ const gestion_salarie = new Vue({
 				success:function(res){
 					if(res == -2) Notify('warning','Veuillez saisir les données exigées');
 					if(res == -1) Notify('danger','Cet utilisateur existe déjà');
-					if(res == 1) Notify('success',`Utilisateur ${scope.ajout.nom+' '+scope.ajout.prenom} créé`);
-					scope.GetListeSalarie();
-					$('#modal_ajout').modal('hide');
-					scope.ajout.nom           = '';
-					scope.ajout.prenom        = '';
-					scope.ajout.login         = '';
-					scope.ajout.password      = '';
-					scope.ajout.vacataire     =  0;
-					scope.ajout.date_validite = scope.date_du_jour;
+					if(res == 1){
+						Notify('success',`Utilisateur ${scope.ajout.nom+' '+scope.ajout.prenom} créé`);
+						scope.GetListeSalarie();
+						$('#modal_ajout').modal('hide');
+						scope.ajout.nom           = '';
+						scope.ajout.prenom        = '';
+						scope.ajout.login         = '';
+						scope.ajout.password      = '';
+						scope.ajout.vacataire     =  0;
+						scope.ajout.date_validite = scope.date_du_jour;
+					}
 				},
 				error:function(){
+					Notify('danger','Veuillez prévenir votre administrateur de cette erreur');
 				}
 			});
 		},
 
 		OuvrirModalModif:function(elem){
 			this.modif = JSON.parse(JSON.stringify(elem));
-			this.ancien_login = elem.login;
 			$('#modal_modif').modal('show');
+		},
+
+		ModifierUtilisateur:function(){
+			var scope = this;
+
+			if(scope.modif.nom == '' || scope.modif.prenom == '' || scope.modif.login == '' || scope.modif.password == ''){
+				Notify('danger','Vous ne pouvez pas enregistrer ces modifications');
+				return;
+			}
+
+			$.ajax({
+				url:"data.php?cas=modif_salarie",
+				type:"POST",
+				data:scope.modif,
+				success:function(res){
+					if(res == -1) Notify('warning','Vous ne pouvez pas priver un utilisateur de ces informations');
+					if(res == 1){
+						Notify('success', `Utilisateur ${scope.modif.prenom+' '+scope.modif.nom} modifié`);
+						$('#modal_modif').modal('hide');
+						scope.GetListeSalarie();
+						scope.modif = {};
+					}
+				},
+				error:function(){
+					Notify('danger','Veuillez prévenir votre administrateur de cette erreur');
+				}
+			});
+		},
+
+		OuvrirModalSuppr:function(elem){
+			this.suppr = JSON.parse(JSON.stringify(elem));
+			$('#modal_suppr').modal('show');
+		},
+
+		SupprimerUtilisateur:function(){
+			var scope = this;
+
+			$.ajax({
+				url:"data.php?cas=suppr_salarie",
+				type:"POST",
+				data:scope.suppr,
+				success:function(res){
+					if(res == 1){
+						Notify('success', `Utilisateur ${scope.suppr.prenom+' '+scope.suppr.nom} supprimé avec succès`);
+						scope.GetListeSalarie();
+						scope.suppr = {};
+						$('#modal_suppr').modal('hide');
+					}
+				},
+				error:function(){
+				}
+			});
 		},
 	},
 	watch:{
