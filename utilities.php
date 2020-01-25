@@ -14,7 +14,7 @@ function Head($titre, $menu){ ?>
     <link rel="stylesheet" href="<?php echo RACINE_GLOBAL_RELATIF ?>css/style.css">
     <link rel="stylesheet" href="<?php echo RACINE_GLOBAL_RELATIF ?>css/animate.min.css">
     <link rel="stylesheet" href="<?php echo RACINE_GLOBAL_RELATIF ?>css/notify.css">
-    <script src="https://kit.fontawesome.com/34d151f234.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="<?php echo RACINE_GLOBAL_RELATIF ?>css/all.css">
   </head>
   <body>
   	<?php if($menu > 0) Menu($menu); ?>
