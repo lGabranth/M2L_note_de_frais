@@ -62,7 +62,7 @@ if(empty($_SESSION) || $_SESSION["id_user"] <= 0) header('Location:login.php');
 				    	<h5 class="card-title">Mon profil</h5>
 				    	<p class="card-text">Voir et modifier mon profil.</p>
 				    	<div class="text-right">
-				    		<a href="#" class="btn btn-degrade">Aller</a>
+				    		<a href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/profil" class="btn btn-degrade">Aller</a>
 				    	</div>
 				  	<?php } ?>
 				  </div>
@@ -76,7 +76,7 @@ if(empty($_SESSION) || $_SESSION["id_user"] <= 0) header('Location:login.php');
 			    	<h5 class="card-title">Mon profil</h5>
 			    	<p class="card-text">Voir et modifier mon profil.</p>
 			    	<div class="text-right">
-			    		<a href="#" class="btn btn-degrade">Aller</a>
+			    		<a href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/profil" class="btn btn-degrade">Aller</a>
 			    	</div>
 					</div>
 				</div>
