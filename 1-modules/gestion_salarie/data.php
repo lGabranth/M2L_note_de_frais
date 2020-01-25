@@ -16,7 +16,7 @@ switch ($cas) {
 									 u.nom, 
 									 u.prenom, 
 									 u.vacataire, 
-									 COALESCE(u.date_validite, "Aucune") as date_validite, 
+									 COALESCE(DATE_FORMAT(u.date_validite, "%Y-%m-%d" ), "Aucune") as date_validite, 
 									 u.login, 
 									 gu.groupe_utilisateur, 
 									 l.nom as ligue 
