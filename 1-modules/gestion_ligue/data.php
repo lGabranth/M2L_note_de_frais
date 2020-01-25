@@ -93,6 +93,18 @@ switch ($cas) {
 			$u->Load();
 			$u->id_ligue = $id;
 			if($u->id_groupe_utilisateur == 3) $u->id_groupe_utilisateur = 2;
+			if($u->id_groupe_utilisateur == 2){
+				$l2 = new ligue;
+				$tab_l2 = $l2->Find(array('id_utilisateur'=>$id_utilisateur));
+				if($tab_l2[0]['id'] == $id) return;
+				else {
+					$l3 = new ligue;
+					$l3->id = $tab_l2[0]['id'];
+					$l3->Load();
+					$l3->id_utilisateur = 0;
+					$l3->Update();
+				}
+			}
 			$u->Update();
 		}
 	break;
