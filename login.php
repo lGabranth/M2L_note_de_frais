@@ -50,4 +50,4 @@
 		</div>
 	</div>
 
-<?php Footer(); ?>
+<?php Footer('',0); ?>

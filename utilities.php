@@ -73,7 +73,7 @@ function Menu($menu){ ?>
 	</nav>
 <?php }
 
-function Footer($path_supplementaire = ''){ ?>
+function Footer($path_supplementaire = '', $menu_present = 1){ ?>
 	<?php $path_supplementaire = (isset($path_supplementaire) && !empty($path_supplementaire)) ? $path_supplementaire : ''; ?>
     <script>
     	RACINE_GLOBAL_RELATIF = '<?php echo RACINE_GLOBAL_RELATIF ?>';
@@ -84,7 +84,9 @@ function Footer($path_supplementaire = ''){ ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="<?php echo RACINE_GLOBAL_RELATIF ?>js/bootstrap.js"></script>
     <script src="<?php echo RACINE_GLOBAL_RELATIF ?>js/vue.js"></script>
-    <script src="<?php echo RACINE_GLOBAL_RELATIF ?>js/composants/menu/menu.comp.vue.js"></script>
+    <?php if($menu_present == 1) {?>
+    	<script src="<?php echo RACINE_GLOBAL_RELATIF ?>js/composants/menu/menu.comp.vue.js"></script>
+  	<?php } ?>
     <script>
     	$(function () {
 			  $('[data-toggle="tooltip"]').tooltip()
