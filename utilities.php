@@ -22,7 +22,10 @@ function Head($titre, $menu){ ?>
 
 function Menu($menu){ ?>
 	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgba(43, 43, 53, 0.6);" id="menu">
-	  <a class="navbar-brand <?php echo ($menu == 1) ? 'active' : 'text-white-50'; ?>" href="<?php echo RACINE_GLOBAL_RELATIF ?>index.php">N2F</a>
+	  <a class="navbar-brand <?php echo ($menu == 1) ? 'active' : 'text-white-50'; ?>" href="<?php echo RACINE_GLOBAL_RELATIF ?>index.php">
+	  	<!-- <img src="<?php //echo RACINE_GLOBAL_RELATIF ?>img/<?php //echo ($menu == 1) ? 'logo_on.png' : 'logo.png' ?>" alt="N2F"> -->
+	  	N2F
+	  </a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
