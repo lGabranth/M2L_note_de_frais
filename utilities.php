@@ -37,7 +37,7 @@ function Menu($menu){ ?>
 		    <?php if($_SESSION["id_grp_user"] == 2) {?>
 		      <li class="nav-item">
 		      	<?php if($_SESSION['id_ligue'] > 0) {?>
-			        <a class="nav-link <?php echo ($menu == 2) ? 'active' : '' ?>" href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/profil">
+			        <a class="nav-link <?php echo ($menu == 2) ? 'active' : '' ?>" href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/gestion_salarie">
 			        	Gestion des salariés
 			        </a>
 		      	<?php } else { ?>

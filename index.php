@@ -50,7 +50,7 @@ if(empty($_SESSION) || $_SESSION["id_user"] <= 0) header('Location:login.php');
 				    	<p class="card-text">Gérer les comptes des salariées.</p>
 				    	<?php if($_SESSION['id_ligue'] > 0) {?>
 					    	<div class="text-right">
-					    		<a href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/profil" class="btn btn-degrade">Aller</a>
+					    		<a href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/gestion_salarie" class="btn btn-degrade">Aller</a>
 					    	</div>
 				    	<?php } else {?>
 				    		<div class="text-right">
