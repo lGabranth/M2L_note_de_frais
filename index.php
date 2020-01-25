@@ -5,8 +5,8 @@ if(empty($_SESSION) || $_SESSION["id_user"] <= 0) header('Location:login.php');
 	<div class="container">
 		<div class="row">
 			<div class="col">
-				<h2 class="mt-4 text-center" style="text-shadow: 0.8px 0.4px 1px black;">
-					<span style="color: white;">Bienvenue</span>, <span class="text-primary"><?php echo $_SESSION['prenom_user'].' '.$_SESSION['nom_user'] ?></span>.
+				<h2 class="mt-4 text-center titre-page">
+					<span>Bienvenue</span>, <span class="text-primary"><?php echo $_SESSION['prenom_user'].' '.$_SESSION['nom_user'] ?></span>.
 				</h2>
 			</div>
 		</div>

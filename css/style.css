@@ -95,3 +95,8 @@ body {
 	text-shadow: 1px 1px 1px rgba(7, 27, 82, 1);
 	color: white;
 }
+
+.titre-page {
+	color: white;
+	text-shadow: 0.8px 0.4px 1px black;
+}
