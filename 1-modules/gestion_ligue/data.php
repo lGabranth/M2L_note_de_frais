@@ -119,7 +119,7 @@ switch ($cas) {
 
 		#On supprime tous les id_ligue des agents liés à la ligue que l'on vient de delete
 		$bind = array('id_ligue'=>$id);
-		$req = "UPDATE utilisateur SET id_ligue = 0 WHERE id_ligue = :id_ligue ";
+		$req = "UPDATE utilisateur SET id_ligue = 0, id_groupe_utilisateur = 3 WHERE id_ligue = :id_ligue ";
 		$u->Sql($req, $bind);
 	break;
 }

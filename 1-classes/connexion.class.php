@@ -8,6 +8,18 @@ class connexion{
 		$u = new utilisateur;
 		$u->id = $id_user;
 		$u->Load();
+
+		if($u->id_ligue > 0){
+			$l = new ligue;
+			$l->id = $u->id_ligue;
+			$l->Load();
+			$_SESSION['nom_ligue'] = $l->nom;
+			$_SESSION['id_ligue'] = $l->id;
+		}
+		else {
+			$_SESSION['nom_ligue'] = "Aucune ligue";
+			$_SESSION['id_ligue'] = 0;
+		}
 		
 		$_SESSION['id_user'] = $u->id;
 		$_SESSION['nom_user'] = $u->nom;

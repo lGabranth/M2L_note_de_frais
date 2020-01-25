@@ -34,7 +34,8 @@ if(empty($_SESSION) || $_SESSION["id_user"] <= 0) header('Location:login.php');
 				</div>
 			</div>
 
-			<div class="col-md mt-3">
+			<div class="col-md mt-3" style="opacity: <?php echo ($_SESSION['id_grp_user'] != 2) ? '1' : ($_SESSION['id_ligue'] > 0) ? '1' : '0.4'; ?>">
+
 				<div class="card" id="card2">
 				  <div class="card-body">
 				  	<?php if($_SESSION['id_grp_user'] == 1) {?>
@@ -46,10 +47,16 @@ if(empty($_SESSION) || $_SESSION["id_user"] <= 0) header('Location:login.php');
 				  	<?php } ?>
 				  	<?php if($_SESSION['id_grp_user'] == 2) {?>
 				    	<h5 class="card-title">Gestion des salariés</h5>
-				    	<p class="card-text">Permet de gérer les comptes des salariées.</p>
-				    	<div class="text-right">
-				    		<a href="#" class="btn btn-degrade">Aller</a>
-				    	</div>
+				    	<p class="card-text">Gérer les comptes des salariées.</p>
+				    	<?php if($_SESSION['id_ligue'] > 0) {?>
+					    	<div class="text-right">
+					    		<a href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/gestion_salarie" class="btn btn-degrade">Aller</a>
+					    	</div>
+				    	<?php } else {?>
+				    		<div class="text-right">
+					    		<a class="btn btn-secondary" style="cursor: not-allowed;">Aller</a>
+					    	</div>
+				    	<?php } ?>
 				  	<?php } ?>
 				  	<?php if($_SESSION['id_grp_user'] == 3) {?>
 				    	<h5 class="card-title">Mon profil</h5>
@@ -63,7 +70,7 @@ if(empty($_SESSION) || $_SESSION["id_user"] <= 0) header('Location:login.php');
 			</div>
 
 			<?php if($_SESSION['id_grp_user'] == 2) {?>
-				<div class="col-md">
+				<div class="col-md mt-3">
 					<div class="card" id="card3">
 				  <div class="card-body">
 			    	<h5 class="card-title">Mon profil</h5>

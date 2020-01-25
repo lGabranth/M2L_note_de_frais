@@ -36,7 +36,15 @@ function Menu($menu){ ?>
 		    <?php } ?>
 		    <?php if($_SESSION["id_grp_user"] == 2) {?>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">Gestion des salariés</a>
+		      	<?php if($_SESSION['id_ligue'] > 0) {?>
+			        <a class="nav-link <?php echo ($menu == 2) ? 'active' : '' ?>" href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/gestion_salarie">
+			        	Gestion des salariés
+			        </a>
+		      	<?php } else { ?>
+							<a class="nav-link text-muted" style="cursor: not-allowed;">
+			        	Gestion des salariés
+			        </a>
+		      	<?php } ?>
 		      </li>
 		    <?php } ?>
 		    <?php if($_SESSION["id_grp_user"] == 1) {?>
