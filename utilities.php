@@ -21,7 +21,7 @@ function Head($titre, $menu){ ?>
 <?php }
 
 function Menu($menu){ ?>
-	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgba(43, 43, 53, 0.6);" id="menu">
+	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgba(36, 36, 36, 0.6);" id="menu">
 	  <a class="navbar-brand <?php echo ($menu == 1) ? 'active' : 'text-white-50'; ?>" href="<?php echo RACINE_GLOBAL_RELATIF ?>index.php">
 	  	<!-- <img src="<?php //echo RACINE_GLOBAL_RELATIF ?>img/<?php //echo ($menu == 1) ? 'logo_on.png' : 'logo.png' ?>" alt="N2F"> -->
 	  	N2F
