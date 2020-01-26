@@ -3,6 +3,7 @@ function Head($titre, $menu){ ?>
 <!DOCTYPE html>
 <html lang="fr">
   <head>
+  	<link rel="icon" href="<?php echo RACINE_GLOBAL_RELATIF ?>img/logo_on.png" />
     <title><?php echo $titre ?></title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
