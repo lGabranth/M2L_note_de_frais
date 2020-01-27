@@ -4,6 +4,100 @@ if($_SESSION['id_grp_user'] != 1) header('Location:'.RACINE_GLOBAL_RELATIF.'inde
 <?php Head("Gestion des directeurs", 3);?>
 
     <main id="app">
+        <!-- Modals ajout directeur-->
+        <div class="modal fade" id="modal_ajout" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title">Ajouter un directeur</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+              <!-- Corps du modal d'ajout -->
+		      <div class="modal-body">
+		        <div class="container-fluid">
+		        	<div class="row">
+		        		<div class="col">
+		        			<label for="">Nom du directeur</label>
+		        			<input type="text" class="form-control form-control-sm" v-model="ajout.nom">
+                            <label for="">Prénom du directeur</label>
+		        			<input type="text" class="form-control form-control-sm" v-model="ajout.prenom">
+                            <label for="">Login du directeur</label>
+		        			<input type="text" class="form-control form-control-sm" v-model="ajout.login">
+                            <label for="">Password du directeur</label>
+		        			<input type="text" class="form-control form-control-sm" v-model="ajout.password">
+		        		</div>
+		        	</div>
+		        </div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Annuler</button>
+		        <button v-show="ajout.password != '' && ajout.nom != '' && ajout.prenom != '' && ajout.login != ''" type="button" class="btn btn-sm btn-success" @click="AjoutDirecteur">Ajouter</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+        <!-- Modal de modification d'un directeur -->
+		<div class="modal fade" id="modal_modif" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title">Modifier <span class="titre-modifier">{{ modif.nom }}</span></h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <div class="container-fluid">
+		        	<div class="row">
+		        		<div class="col">
+		        			<label for="">Nom du directeur</label>
+		        			<input type="text" class="form-control form-control-sm" v-model="modif.nom">
+                            <label for="">Prénom du directeur</label>
+		        			<input type="text" class="form-control form-control-sm" v-model="modif.prenom">
+		        		</div>
+		        	</div>
+		        </div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Annuler</button>
+		        <button type="button" class="btn btn-sm btn-success" @click="ModifierDirecteur">Sauvegarder</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+            <!-- Modal de suppression d'une ligue -->
+        <div class="modal fade" id="modal_suppr" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title">Supprimer <span class="titre-supprimer">{{ suppr.nom }}</span></h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		      	<div class="container-fluid">
+		      		<div class="row">
+		      			<div class="col text-center">
+		        			<p>Êtes-vous certain de vouloir supprimer ce directeur ?</p>
+		      				
+		      				<div class="row">
+		      					<div class="col">
+		      						<button class="btn btn-lg btn-success" @click="SupprimerDirecteur">OUI</button>
+		      						<button class="btn btn-lg btn-danger" data-dismiss="modal">NON</button>
+		      					</div>
+		      				</div>
+		      			</div>
+		      		</div>
+		      	</div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 
         <!-- Corps de l'application -->
         <div class="container mt-4">
@@ -23,7 +117,7 @@ if($_SESSION['id_grp_user'] != 1) header('Location:'.RACINE_GLOBAL_RELATIF.'inde
                             <button class="btn btn-sm btn-primary"><i class="fas fa-search"></i> Rechercher</button>
                         </div>
                     </div>
-                    <button class="btn btn-sm btn-success mt-4"><i class="fas fa-plus"></i> Ajouter</button>
+                    <button class="btn btn-sm btn-success mt-4" @click="OuvrirModalAjout"><i class="fas fa-plus"></i> Ajouter</button>
 
                     <div class="table-responsive mt-4">
                         <table class="table table-hover table-stripped">
@@ -37,12 +131,12 @@ if($_SESSION['id_grp_user'] != 1) header('Location:'.RACINE_GLOBAL_RELATIF.'inde
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(utilisateur, index) in liste_utilisateurs" class="text-center">
+                                <tr v-for="(utilisateur, index) in liste_utilisateur_filtree" class="text-center">
                                     <td>{{ index+1 }}</td>
                                     <td>{{ utilisateur.nom + ' ' + utilisateur.prenom }}</td>
                                     <td>{{ utilisateur.ligue }}</td>
-                                    <td><button class="btn btn-sm btn-warning" ><i class="fas fa-edit"></i></button></td>
-                                    <td><button class="btn btn-sm btn-danger" ><i class="fas fa-trash"></i></button></td>
+                                    <td><button class="btn btn-sm btn-warning" @click="OuvrirModalModif(utilisateur)"><i class="fas fa-edit"></i></button></td>
+                                    <td><button class="btn btn-sm btn-danger" @click="OuvrirModalSuppr(utilisateur)"><i class="fas fa-trash"></i></button></td>
                                 </tr>
 					        </tbody>
                         </table>
