@@ -42,7 +42,7 @@ if(empty($_SESSION) || $_SESSION["id_user"] <= 0) header('Location:login.php');
 				    	<h5 class="card-title">Gestion des directeurs</h5>
 				    	<p class="card-text">Permet de créer/modifier/supprimer des directeurs.</p>
 				    	<div class="text-right">
-				    		<a href="#" class="btn btn-degrade">Aller</a>
+				    		<a href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/gestion_directeur" class="btn btn-degrade">Aller</a>
 				    	</div>
 				  	<?php } ?>
 				  	<?php if($_SESSION['id_grp_user'] == 2) {?>
