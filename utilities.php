@@ -56,7 +56,7 @@ function Menu($menu){ ?>
 		        <a class="nav-link <?php echo ($menu == 2) ? 'active' : '' ?>" href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/gestion_ligue">Gestion des ligues</a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">Gestion des directeurs</a>
+		        <a class="nav-link <?php echo ($menu == 3) ? 'active' : '' ?> " href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/gestion_directeur">Gestion des directeurs</a>
 		      </li>
 		    <?php } ?>
 	    </ul>

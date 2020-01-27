@@ -96,7 +96,7 @@ switch ($cas) {
 			if($u->id_groupe_utilisateur == 2){
 				$l2 = new ligue;
 				$tab_l2 = $l2->Find(array('id_utilisateur'=>$id_utilisateur));
-				if($tab_l2[0]['id'] == $id) return;
+				if($tab_l2[0]['id'] == $id) break;
 				else {
 					$l3 = new ligue;
 					$l3->id = $tab_l2[0]['id'];
