@@ -9,10 +9,6 @@ class connexion{
 		$u->id = $id_user;
 		$u->Load();
 
-		if($u->vacataire == 1 && strtotime($u->date_validite) < time()){
-			return;
-		}
-
 		if($u->id_ligue > 0){
 			$l = new ligue;
 			$l->id = $u->id_ligue;

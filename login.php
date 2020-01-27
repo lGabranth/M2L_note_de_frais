@@ -23,7 +23,13 @@
 								$u = new utilisateur;
 								$res = $u->Find(array('login'=>$login, 'password'=>sha1(md5($login.$password))));
 								if(count($res) > 0){
-									connexion::ConnexionUtilisateur($res[0]['id']);
+									if($res[0]['date_validite'] !== NULL && strtotime($res[0]['date_validite']) < time()){?>
+										<div class="alert alert-info text-center">
+											Vous ne pouvez plus vous connecter avec ce compte, date dépassée.
+										</div>
+									<?php } else {
+										connexion::ConnexionUtilisateur($res[0]['id']);
+									}
 								}
 								else { ?>
 									<div class="alert alert-danger text-center">
