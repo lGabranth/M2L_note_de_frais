@@ -111,7 +111,7 @@ if($_SESSION['id_grp_user'] != 1) header('Location:'.RACINE_GLOBAL_RELATIF.'inde
                 <div class="col bloc">
                     <h3 class="mt-3">Gérer les directeurs</h3>
                     <hr>
-                    <div class="input-group mt-2">
+					<div class="input-group mt-2">
                         <input type="search" class="form-control form-control-sm" placeholder="Rechercher une ligue" v-model="recherche">
                         <div class="input-group-append">
                             <button class="btn btn-sm btn-primary"><i class="fas fa-search"></i> Rechercher</button>

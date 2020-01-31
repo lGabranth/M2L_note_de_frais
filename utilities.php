@@ -35,7 +35,7 @@ function Menu($menu){ ?>
 	    <ul class="navbar-nav mr-auto">
 	    	<?php if($_SESSION["id_grp_user"] != 1) {?>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">Gérer <?php echo ($_SESSION["id_grp_user"] == 3) ? 'mes' : 'les' ?> notes de frais</a>
+		        <a class="nav-link" href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/note_de_frais">Gérer <?php echo ($_SESSION["id_grp_user"] == 3) ? 'mes' : 'les' ?> notes de frais</a>
 		      </li>
 		    <?php } ?>
 		    <?php if($_SESSION["id_grp_user"] == 2) {?>
