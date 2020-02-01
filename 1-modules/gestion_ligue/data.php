@@ -68,44 +68,49 @@ switch ($cas) {
 	break;
 
 	case 'modif_ligue':
-		#On charge les changements et on modifie la ligue
 		$l = new ligue;
 		$l->id = $id;
 		$l->Load();
-		if($l->id_utilisateur != $id_utilisateur) $ancien_directeur = $l->id_utilisateur;
-		else $ancien_directeur = 0;
+
+		#On récupère l'id de l'ancien directeur si jamais ce n'est pas le même qu'avant
+		$ancien_directeur = ($l->id_utilisateur != $id_utilisateur) ? $l->id_utilisateur : 0;
 
 		$l->LoadForm();
-		$l->Update();
 
+		#Si jamais on a changé de directeur, on enlève les droits à l'ancien.
 		if($ancien_directeur > 0){
-			$u_old = new utilisateur;
-			$u_old->id = $ancien_directeur;
-			$u_old->Load();
-			$u_old->id_groupe_utilisateur = 3;
-			$u_old->Update();
+			$u_ancien_directeur = new utilisateur;
+			$u_ancien_directeur->id = $ancien_directeur;
+			$u_ancien_directeur->Load();
+			$u_ancien_directeur->id_groupe_utilisateur = 3;
+			$u_ancien_directeur->Update();
 		}
 
 		if($id_utilisateur > 0){
-			#On rajoute la ligue à l'utilisateur que l'on a passé en admin et si il n'était pas de rang directeur, on le passe directeur.
-			$u = new utilisateur;
-			$u->id = $id_utilisateur;
-			$u->Load();
-			$u->id_ligue = $id;
-			if($u->id_groupe_utilisateur == 3) $u->id_groupe_utilisateur = 2;
-			if($u->id_groupe_utilisateur == 2){
-				$l2 = new ligue;
-				$tab_l2 = $l2->Find(array('id_utilisateur'=>$id_utilisateur));
-				if($tab_l2[0]['id'] == $id) break;
-				else {
-					$l3 = new ligue;
-					$l3->id = $tab_l2[0]['id'];
-					$l3->Load();
-					$l3->id_utilisateur = 0;
-					$l3->Update();
+			#On passe le nouveau directeur en Directeur, et on change sa ligue.
+			$u_nouveau_directeur = new utilisateur;
+			$u_nouveau_directeur->id = $id_utilisateur;
+			$u_nouveau_directeur->Load();
+			$u_nouveau_directeur->id_ligue = $id;
+			if($u_nouveau_directeur->id_groupe_utilisateur == 3) $u_nouveau_directeur->id_groupe_utilisateur = 2;
+			if($u_nouveau_directeur->id_groupe_utilisateur == 2){
+				#Si le nouvel utilisateur était déjà Directeur, on cherche son ancienne ligue et on l'enlève du rôle de directeur.
+				$l_ancienne_ligue_new_directeur = new ligue;
+				$tab = $l_ancienne_ligue_new_directeur->Find(array('id_utilisateur'=>$id_utilisateur));
+				#On vérifie quand même que ce ne soit pas le même directeur
+				if(count($tab) > 0){
+					if($tab[0]['id'] == $id) break;
+					else{
+						$l3 = new ligue;
+						$l3->id = $tab[0]['id'];
+						$l3->Load();
+						$l3->id_utilisateur = 0;
+						$l3->Update();
+					}
 				}
 			}
-			$u->Update();
+			$u_nouveau_directeur->Update();
+			$l->Update();
 		}
 	break;
 
