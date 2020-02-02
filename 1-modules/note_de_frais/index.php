@@ -25,7 +25,7 @@ Head("Gestion des notes de frais", 2);
                                     <label for="">Montant de la note de frais</label>
                                     <input type="text" class="form-control form-control-sm" v-model="ajout.montant">
                                     <label for="">Image justificative</label>
-                                    <input type="text" class="form-control form-control-sm" v-model="ajout.path_image">
+                                    <input type="file" id="inputImg" class="form-control form-control-sm">
                                     <!-- Revoir la fonction pour allez chercher l'image -->
 		        		        </div>
 		        	        </div>
@@ -33,7 +33,36 @@ Head("Gestion des notes de frais", 2);
 		            </div>
 		            <div class="modal-footer">
 		                <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Annuler</button>
-		                <button v-show="ajout.libelle != '' && ajout.montant != '' && ajout.path_image != ''" type="button" class="btn btn-sm btn-success">Ajouter</button>
+		                <button v-show="ajout.libelle != '' && ajout.montant != '' && ajout.path_image != ''" type="submit"  class="btn btn-sm btn-success" @click="AjoutNote">Ajouter</button>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+
+        <!-- Modals refus note de frais -->
+        <div class="modal fade" id="modal_refus" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		    <div class="modal-dialog modal-dialog-centered" role="document">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		                <h5 class="modal-title">Raison du refus</h5>
+		                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		                <span aria-hidden="true">&times;</span>
+		                </button>
+		            </div>
+                    <!-- Corps du modal de refus -->
+		            <div class="modal-body">
+		                <div class="container-fluid">
+		        	        <div class="row">
+		        		        <div class="col">
+                                    <label for="">Commentaire de refus</label>
+                                    <input type="text" class="form-control form-control-sm" v-model="refus.commentaire">
+		        		        </div>
+		        	        </div>
+		                </div>
+		            </div>
+		            <div class="modal-footer">
+		                <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Annuler</button>
+		                <button type="bouton"  class="btn btn-sm btn-success" @click="RefusNote">Refuser</button>
 		            </div>
 		        </div>
 		    </div>
@@ -54,14 +83,13 @@ Head("Gestion des notes de frais", 2);
 		                <div class="container-fluid">
 		        	        <div class="row">
 		        		        <div class="col">
-                                    <img src="" alt="img">
+                                    <img id="justifImg" src="">
 		        		        </div>
 		        	        </div>
 		                </div>
 		            </div>
 		            <div class="modal-footer">
 		                <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Annuler</button>
-		                <button v-show="ajout.libelle != '' && ajout.montant != '' && ajout.path_image != ''" type="button" class="btn btn-sm btn-success">Ajouter</button>
 		            </div>
 		        </div>
 		    </div>
@@ -99,9 +127,8 @@ Head("Gestion des notes de frais", 2);
 					    		<th scope="col">Libellé</th>
                                 <th scope="col">Montant</th>
                                 <th scope="col">Image</th>
-                                <?php if ($_SESSION['id_grp_user'] == 3) {?>
-                                    <th scope="col">Statut</th>
-                                <?php }
+                                <th scope="col">Statut</th>
+                                <?php 
                                 if ($_SESSION['id_grp_user'] == 2) {?>
                                     <th>Valider</th>
 					    		    <th>Refuser</th>
@@ -113,13 +140,11 @@ Head("Gestion des notes de frais", 2);
                                     <td>{{ index+1 }}</td>
                                     <td>{{ note_de_frais.libelle }}</td>
                                     <td>{{ note_de_frais.montant }} €</td>
-                                    <td @click="OuvrirPhoto">{{ note_de_frais.path_image }}</td>
-                                    <?php if ($_SESSION['id_grp_user'] == 3) {?>
-                                        <td>{{ note_de_frais.etat_note_de_frais }}</td>
-                                    <?php }
-                                    if ($_SESSION['id_grp_user'] == 2) {?>
-                                        <td><button class="btn btn-sm btn-success" ><i class="fas fa-check"></i></button></td>
-                                        <td><button class="btn btn-sm btn-danger" ><i class="fas fa-ban"></i></button></td>
+                                    <td><button class="btn btn-sm btn-info" @click="OuvrirModalPhoto"><i class="far fa-image"></i></button></td>
+                                    <td id="etat">{{ note_de_frais.etat_note_de_frais }}</td>
+                                    <?php if ($_SESSION['id_grp_user'] == 2 ) {?>
+                                        <td><button class="btn btn-sm btn-success"><i class="fas fa-check"></i></button></td>
+                                        <td><button class="btn btn-sm btn-danger" @click="OuvrirModalRefus(note_de_frais)"><i class="fas fa-ban"></i></button></td>
                                     <?php }?>
                                 </tr>
 					        </tbody>

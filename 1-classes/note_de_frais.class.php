@@ -12,7 +12,7 @@ class note {
     public $id_etat_note_de_frais;
 
     function __construct(){
-		$this->id                    = 0;
+		    $this->id                    = 0;
         $this->libelle               = '';
         $this->path_image            = '';
         $this->commentaire           = '';
