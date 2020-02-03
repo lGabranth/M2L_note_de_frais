@@ -70,6 +70,8 @@ switch ($cas) {
     $n->id_utilisateur = $_SESSION['id_user'];  
     $n->path_image = $nom_fichier;
     $n->Add();
+
+    echo 1;
   break;
 
   case 'valider_NDF':

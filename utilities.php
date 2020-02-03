@@ -100,7 +100,7 @@ function Footer($path_supplementaire = '', $menu_present = 1){ ?>
     	<script src="<?php echo RACINE_GLOBAL_RELATIF ?>js/composants/menu/menu.comp.vue.js"></script>
   	<?php } ?>
     <script>
-    	$(function () {
+    	$(document).ready(function () {
 			  $('[data-toggle="tooltip"]').tooltip()
 			})
     </script>

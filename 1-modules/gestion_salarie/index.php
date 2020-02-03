@@ -45,7 +45,7 @@ if($_SESSION['id_ligue'] == 0) header('Location:'.RACINE_GLOBAL_RELATIF.'index.p
 		        			<input type="text" class="form-control form-control-sm" id="prenom" v-model="ajout.prenom" :placeholder="'Prénom du '+[(ajout.vacataire == 0) ? 'salarié' : 'vacataire']">
 
 		        			<label for="password" class="mt-3">Mot de passe <sup class="text-danger">*</sup> : </label>
-		        			<input type="text" class="form-control form-control-sm" id="password" v-model="ajout.password" placeholder="Mot de passe de connexion">
+		        			<input type="password" class="form-control form-control-sm" id="password" v-model="ajout.password" placeholder="Mot de passe de connexion">
 									
 									<div v-show="ajout.vacataire == 1">
 		        				<label for="" class="mt-3">Date limite de validité du compte : </label>

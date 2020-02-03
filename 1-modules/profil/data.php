@@ -27,6 +27,8 @@ switch ($cas) {
 		$u->id = $_POST['id'];
 		$u->Load();
 		$u->LoadForm();
+		$_SESSION['nom_user'] = $_POST['nom'];
+		$_SESSION['prenom_user'] = $_POST['prenom'];
 
 		$u->Update();
 	break;

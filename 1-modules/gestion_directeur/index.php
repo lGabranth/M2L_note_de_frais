@@ -21,12 +21,12 @@ if($_SESSION['id_grp_user'] != 1) header('Location:'.RACINE_GLOBAL_RELATIF.'inde
 		        		<div class="col">
 		        			<label for="">Nom du directeur</label>
 		        			<input type="text" class="form-control form-control-sm" v-model="ajout.nom">
-                            <label for="">Prénom du directeur</label>
+                  <label for="" class="mt-3">Prénom du directeur</label>
 		        			<input type="text" class="form-control form-control-sm" v-model="ajout.prenom">
-                            <label for="">Login du directeur</label>
+                  <label for="" class="mt-3">Login du directeur</label>
 		        			<input type="text" class="form-control form-control-sm" v-model="ajout.login">
-                            <label for="">Password du directeur</label>
-		        			<input type="text" class="form-control form-control-sm" v-model="ajout.password">
+                  <label for="" class="mt-3">Password du directeur</label>
+		        			<input type="password" class="form-control form-control-sm" v-model="ajout.password">
 		        		</div>
 		        	</div>
 		        </div>

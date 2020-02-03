@@ -41,7 +41,7 @@ Head("Gestion des notes de frais", 2);
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Annuler</button>
-        <button v-show="ajout.libelle != '' && ajout.montant != '' && ajout.id_type_note_de_frais > 0" type="submit" class="btn btn-sm btn-success" @click="AjoutNote">Ajouter</button>
+        <button v-show="ajout.libelle != '' && (ajout.montant != '' && ajout.montant > 0) && ajout.id_type_note_de_frais > 0" type="submit" class="btn btn-sm btn-success" @click="AjoutNote">Ajouter</button>
       </div>
     </form>
   </div>
@@ -64,7 +64,7 @@ Head("Gestion des notes de frais", 2);
          <div class="row">
           <div class="col">
             <label for="">Commentaire de refus</label>
-            <input type="text" class="form-control form-control-sm" v-model="refus.commentaire">
+            <input type="text" class="form-control form-control-sm" v-model="refus.commentaire" maxlength="50">
           </div>
         </div>
       </div>
@@ -166,6 +166,7 @@ Head("Gestion des notes de frais", 2);
                 <th>Valider</th>
                 <th>Refuser</th>
               <?php }?>
+              <th scope="col">Commentaire</th>
             </tr>
           </thead>
           <tbody>
@@ -194,6 +195,11 @@ Head("Gestion des notes de frais", 2);
                   <button v-if="note_de_frais.id_etat_note_de_frais == 1" class="btn btn-sm btn-danger" @click="OuvrirModalRefus(note_de_frais)"><i class="fas fa-ban"></i></button>
                 </td>
               <?php }?>
+              <td>
+                <span v-if="note_de_frais.id_etat_note_de_frais == 3" data-toggle="tooltip" data-placement="bottom" :title="note_de_frais.commentaire" style="cursor: pointer;">
+                  <i class="fas fa-comment"></i>
+                </span>
+              </td>
             </tr>
           </tbody>
         </table>
