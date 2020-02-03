@@ -1,5 +1,5 @@
 <?php include('../../0-config/config-genos.php'); ?>
-<?php Head('Mon profil', 3) ?>
+<?php Head('Mon profil', 4) ?>
 <?php 
 	$u = new utilisateur;
 	$u->id = $_SESSION['id_user'];

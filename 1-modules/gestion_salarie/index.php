@@ -2,7 +2,7 @@
 if($_SESSION['id_grp_user'] > 2) header('Location:'.RACINE_GLOBAL_RELATIF.'index.php');
 if($_SESSION['id_ligue'] == 0) header('Location:'.RACINE_GLOBAL_RELATIF.'index.php');
 ?>
-<?php Head('Gestion des ligues', 2); ?>
+<?php Head('Gestion des ligues', 3); ?>
 	<main id="app">
 		<!-- Modal d'ajout de ligue -->
 		<div class="modal fade" id="modal_ajout" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
