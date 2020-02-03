@@ -196,16 +196,22 @@ Head("Gestion des notes de frais", 2);
                 </td>
               <?php }?>
               <td>
-                <span v-if="note_de_frais.id_etat_note_de_frais == 3" data-toggle="tooltip" data-placement="bottom" :title="note_de_frais.commentaire" style="cursor: pointer;">
+                <span v-show="note_de_frais.id_etat_note_de_frais == 3" data-toggle="tooltip" data-placement="bottom" :title="note_de_frais.commentaire" style="cursor: pointer;">
                   <i class="fas fa-comment"></i>
                 </span>
               </td>
+            </tr>
+            <tr class="bg-dark text-white">
+              <td colspan="3" class="text-right"><b>TOTAL REMBOURSE</b></td>
+              <td class="text-right"><b>{{ total_rembourse }}</b></td>
+              <td colspan="3" class="text-left"><b>€</b></td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
+  <br>
 </div>
 </main>
 <?php Footer('app.vue.js');?>

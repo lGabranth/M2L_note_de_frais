@@ -16,6 +16,7 @@ var vue = new Vue({
         rech_etat:0,
         recherche:'',
         rech_type:0,
+        total_rembourse:0,
     },
     mounted(){
         this.GetListeTypeNDF();
@@ -51,6 +52,14 @@ var vue = new Vue({
                 });
             }
 
+            var total = 0;
+            for(let i = 0 ; i < resTmp3.length ; i++){
+                if(resTmp3[i].id_etat_note_de_frais == 2){
+                    total += parseInt(resTmp3[i].montant);
+                }
+            }
+            this.total_rembourse = total;
+
             return resTmp3;
         }
     },
@@ -64,6 +73,11 @@ var vue = new Vue({
                 data:{},
                 success:function(res){
                     scope.liste_type_NDF = JSON.parse(res);
+                    setTimeout(function() {
+                        $(document).ready(function () {
+                          $('[data-toggle="tooltip"]').tooltip()
+                        })
+                    }, 50);
                 },
                 error:function(){
                 }
@@ -185,8 +199,8 @@ var vue = new Vue({
 				data:scope.refus,
 				success:function(res){
 					Notify('success',`Note de frais "${scope.refus.libelle}" refusée`);
-					scope.GetListeNDF();
 					scope.refus = {};
+					scope.GetListeNDF();
 					$('#modal_refus').modal('hide');
                     Menu.GetNbAttente();
 				},
