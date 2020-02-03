@@ -3,7 +3,7 @@
 if($_SESSION['id_grp_user'] == 1) header('Location:'.RACINE_GLOBAL_RELATIF.'index.php');
 Head("Gestion des notes de frais", 2);
 ?>
-<main id="app">
+<main id="app" v-cloak>
   <!-- Modals ajout note de frais -->
   <div class="modal fade" id="modal_ajout" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -156,6 +156,9 @@ Head("Gestion des notes de frais", 2);
           <thead class="thead-dark">
             <tr class="text-center">
               <th scope="col">#</th>
+              <?php if ($_SESSION['id_grp_user'] == 2){?>
+                <th scope="col">Identité</th>
+              <?php } ?>
               <th scope="col">Type</th>
               <th scope="col">Libellé</th>
               <th scope="col">Montant</th>
@@ -172,6 +175,9 @@ Head("Gestion des notes de frais", 2);
           <tbody>
             <tr v-for="(note_de_frais, index) in liste_NDF_filtree" class="text-center">
               <td>{{ index+1 }}</td>
+              <?php if ($_SESSION['id_grp_user'] == 2){?>
+                <td>{{ note_de_frais.nom+' '+note_de_frais.prenom }}</td>
+              <?php } ?>
               <td>{{ note_de_frais.type }}</td>
               <td>{{ note_de_frais.libelle }}</td>
               <td>{{ note_de_frais.montant }} €</td>
@@ -202,9 +208,9 @@ Head("Gestion des notes de frais", 2);
               </td>
             </tr>
             <tr class="bg-dark text-white">
-              <td colspan="3" class="text-right"><b>TOTAL REMBOURSE</b></td>
+              <td colspan="<?php echo ($_SESSION['id_grp_user'] == 2) ? '4' : '3' ?>" class="text-right"><b>TOTAL REMBOURSE</b></td>
               <td class="text-right"><b>{{ total_rembourse }}</b></td>
-              <td colspan="3" class="text-left"><b>€</b></td>
+              <td colspan="<?php echo ($_SESSION['id_grp_user'] == 2) ? '5' : '3' ?>" class="text-left"><b>€</b></td>
             </tr>
           </tbody>
         </table>

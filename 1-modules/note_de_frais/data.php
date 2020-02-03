@@ -23,7 +23,7 @@ switch ($cas) {
     $n = new note_de_frais;
 
     $bind = array();
-    $req = 'SELECT n.*, endf.etat_note_de_frais as etat, tndf.type_note_de_frais as type 
+    $req = 'SELECT n.*, endf.etat_note_de_frais as etat, tndf.type_note_de_frais as type, u.nom, u.prenom 
             FROM note_de_frais n 
             INNER JOIN type_note_de_frais tndf ON n.id_type_note_de_frais = tndf.id 
             INNER JOIN etat_note_de_frais endf ON n.id_etat_note_de_frais = endf.id 
@@ -41,6 +41,8 @@ switch ($cas) {
     $champs = $n->FieldList();
     array_push($champs, 'etat');
     array_push($champs, 'type');
+    array_push($champs, 'nom');
+    array_push($champs, 'prenom');
 
     $res = $n->StructList($req, $champs, $bind, 'json');
 
