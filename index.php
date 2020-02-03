@@ -27,7 +27,7 @@ if(empty($_SESSION) || $_SESSION["id_user"] <= 0) header('Location:login.php');
 				    	<h5 class="card-title">Gestion des note de frais</h5>
 				    	<p class="card-text">Permet de gérer <?php echo ($_SESSION['id_grp_user'] == 2) ? 'les' : 'mes' ?> notes de frais.</p>
 				    	<div class="text-right">
-				    		<a href="#" class="btn btn-degrade">Aller</a>
+				    		<a href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/note_de_frais" class="btn btn-degrade">Aller</a>
 				    	</div>
 				  	<?php } ?>
 					</div>
