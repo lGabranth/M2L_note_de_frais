@@ -61,6 +61,17 @@ function Menu($menu){ ?>
 		    <?php } ?>
 	    </ul>
 	    <div class="my-2 my-lg-0">
+	    	<?php if($_SESSION['id_grp_user'] == 2) {?>
+	    		<a href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/note_de_frais">
+	    			<i class="fas fa-bell fa-lg">
+	    				<small>
+			    			<sup>
+			    				<span class="badge badge-pill badge-light">{{ nbAttente }}</span>
+			    			</sup>
+	    				</small>
+	    			</i>
+	    		</a>
+	    	<?php } ?>
 	    	<?php if($_SESSION["id_grp_user"] != 1) {?>
 	    		<a href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/profil" data-toggle="tooltip" data-placement="bottom" title="Profil"><i class="fas fa-user fa-lg <?php echo ($menu == 4) ? 'text-white' : 'text-info' ?>"></i></a> &nbsp;
 	    	<?php } ?>
