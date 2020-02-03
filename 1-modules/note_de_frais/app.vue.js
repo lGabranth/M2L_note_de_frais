@@ -3,6 +3,7 @@ var vue = new Vue({
     data:{
         liste_NDF:[],
         liste_type_NDF:[],
+        liste_etat_NDF:[],
         recherche:'',
         ajout:{
             libelle:'',
@@ -11,14 +12,47 @@ var vue = new Vue({
         },
         valid:{},
         refus:{},
-        path_image: '',
+        path_image:'',
+        rech_etat:0,
+        recherche:'',
+        rech_type:0,
     },
     mounted(){
         this.GetListeTypeNDF();
+        this.GetListeEtatNDF();
         this.GetListeNDF();
     },
     computed:{
+        liste_NDF_filtree(){
+            var resTmp = [];
+            if(this.rech_etat == 0) resTmp = this.liste_NDF;
+            if(this.rech_etat > 0){
+                for (let i = 0 ; i < this.liste_NDF.length ; i++){
+                    if(this.liste_NDF[i].id_etat_note_de_frais == this.rech_etat) resTmp.push(this.liste_NDF[i]);
+                }
+            }
 
+            var resTmp2 = [];
+            if(this.rech_type == 0) resTmp2 = resTmp;
+            if(this.rech_type > 0){
+                for (let i = 0 ; i < resTmp.length ; i++){
+                    if(resTmp[i].id_type_note_de_frais == this.rech_type) resTmp2.push(resTmp[i]);
+                }
+            }
+
+            var resTmp3 = [];
+            if(this.recherche == '') resTmp3 = resTmp2;
+            if(this.recherche != ''){
+                resTmp3 = resTmp2.filter(ndf => { 
+                    let libelle = ndf.libelle.toLowerCase();
+                    let recherche = this.recherche.toLowerCase().trim();
+
+                    return libelle.indexOf(recherche) > -1;
+                });
+            }
+
+            return resTmp3;
+        }
     },
     methods:{
         GetListeTypeNDF:function(){
@@ -30,6 +64,21 @@ var vue = new Vue({
                 data:{},
                 success:function(res){
                     scope.liste_type_NDF = JSON.parse(res);
+                },
+                error:function(){
+                }
+            });
+        },
+
+        GetListeEtatNDF:function(){
+            var scope = this;
+
+            $.ajax({
+                url:"data.php?cas=liste_etat_NDF",
+                type:"POST",
+                data:{},
+                success:function(res){
+                    scope.liste_etat_NDF = JSON.parse(res);
                 },
                 error:function(){
                 }
@@ -82,7 +131,16 @@ var vue = new Vue({
                 contentType: false,
 				data:form_data,
 				success:function(res){
-					
+					if(res == -1) Notify('warning','Veuillez sélectionner un fichier');
+                    if(res == 1){
+                        Notify('success','N2F ajoutée');
+                        scope.GetListeNDF();
+                        $('#modal_ajout').modal('hide');
+                        Menu.GetNbAttente();
+                        scope.ajoutlibelle                = '';
+                        scope.ajout.montant               = 0;
+                        scope.ajout.id_type_note_de_frais = 0;
+                    }
 				},
 				error:function(){
 				}
@@ -104,7 +162,9 @@ var vue = new Vue({
                 success:function(res){
                     Notify('success',`NDF ${scope.valid.libelle} Approuvée`);
                     scope.GetListeNDF();
+                    scope.valid = {};
                     $('#modal_valid').modal('hide');
+                    Menu.GetNbAttente();
                 },
                 error:function(){
                     Notify('danger','Contactez votre admin');
@@ -117,17 +177,18 @@ var vue = new Vue({
             $('#modal_refus').modal('show');
         },
 
-        RefusNote:function(){
+        RefuserNDF:function(){
             var scope = this;
             $.ajax({
-				url:"data.php?cas=refus_note",
+				url:"data.php?cas=refuser_NDF",
 				type:"POST",
 				data:scope.refus,
 				success:function(res){
-					Notify('success',`Note de frais "${scope.refus.libelle}" modifiée`);
-					$('#modal_refus').modal('hide');
+					Notify('success',`Note de frais "${scope.refus.libelle}" refusée`);
 					scope.GetListeNDF();
 					scope.refus = {};
+					$('#modal_refus').modal('hide');
+                    Menu.GetNbAttente();
 				},
 				error:function(){
                     Notify('danger','Veuillez prévenir votre administrateur de cette erreur');

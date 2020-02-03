@@ -53,7 +53,7 @@ Head("Gestion des notes de frais", 2);
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Raison du refus</h5>
+        <h5 class="modal-title">Raison du refus <small class="text-info">{{ refus.libelle }}</small></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -71,7 +71,8 @@ Head("Gestion des notes de frais", 2);
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Annuler</button>
-      <button type="bouton"  class="btn btn-sm btn-success" @click="RefusNote">Refuser</button>
+      <button v-if="refus.commentaire != ''" type="bouton" class="btn btn-sm btn-success" @click="RefuserNDF">Refuser</button>
+      <button v-else type="bouton" class="btn btn-sm btn-light" style="cursor: not-allowed;">Refuser</button>
     </div>
   </div>
 </div>
@@ -119,11 +120,31 @@ Head("Gestion des notes de frais", 2);
     <div class="col bloc">
       <h3 class="mt-3">Gérer <?php echo ($_SESSION['id_grp_user'] == 2) ? 'les' : 'mes'?> notes de frais</h3>
       <hr>
-      <div class="input-group mt-2">
-        <input type="search" class="form-control form-control-sm" placeholder="Rechercher une note de frais">
-        <div class="input-group-append">
-          <button class="btn btn-sm btn-primary"><i class="fas fa-search"></i> Rechercher</button>
+      <div class="btn-toolbar mt-2 justify-content-between">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <button class="btn btn-sm btn-primary">Etat</button>
+          </div>
+          <select class="custom-select custom-select-sm" v-model="rech_etat">
+            <option value="0">Tous</option>
+            <option v-for="e in liste_etat_NDF" :value="e.id">{{ e.etat_note_de_frais }}</option>
+          </select>
         </div>
+        
+        <div class="input-group">
+          <input type="search" class="form-control form-control-sm" placeholder="Rechercher une N2F" v-model="recherche">
+        </div>
+
+        <div class="input-group">
+          <select class="custom-select custom-select-sm" v-model="rech_type">
+            <option value="0">Tous</option>
+            <option v-for="t in liste_type_NDF" :value="t.id">{{ t.type_note_de_frais }}</option>
+          </select>
+          <div class="input-group-append">
+            <button class="btn btn-sm btn-primary">Type</button>
+          </div>
+        </div>
+        
       </div>
       <!-- Dans la grille de donnée on met en forme pour différencier les directeurs des salariés -->
       <?php if ($_SESSION['id_grp_user'] == 3) {?>
@@ -148,7 +169,7 @@ Head("Gestion des notes de frais", 2);
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(note_de_frais, index) in liste_NDF" class="text-center">
+            <tr v-for="(note_de_frais, index) in liste_NDF_filtree" class="text-center">
               <td>{{ index+1 }}</td>
               <td>{{ note_de_frais.type }}</td>
               <td>{{ note_de_frais.libelle }}</td>

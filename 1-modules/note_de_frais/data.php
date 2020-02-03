@@ -15,6 +15,10 @@ switch ($cas) {
     echo json_encode(type_note_de_frais::GetListe());
   break;
 
+  case 'liste_etat_NDF':
+    echo json_encode(etat_note_de_frais::GetListe());
+  break;
+
   case 'liste_NDF':
     $n = new note_de_frais;
 
@@ -48,7 +52,7 @@ switch ($cas) {
     $n = new note_de_frais;
 
     if(empty($_FILES) || $_FILES['file']['error'] == 4){
-      echo -3;
+      echo -1;
       return;
     }
 
@@ -76,34 +80,13 @@ switch ($cas) {
     $n->Update();
   break; 
 
-  case 'refus_note':
-      if($commentaire == ''){
-		echo -1;
-		return;
-	}
-	$n = new note;
-      $n->id = $id;
-      $n->LoadForm();
-      $n->commentaire = $commentaire;
-      $n->id_etat_note_de_frais = 3;
-      echo ' ';
-      echo $n->id;
-      echo ' ';
-      echo $n->libelle;
-      echo ' ';
-      echo $n->path_image;
-      echo ' ';
-      echo $n->commentaire;
-      echo ' ';
-      echo $n->montant;
-      echo ' ';
-      echo $n->id_type_note_de_frais;
-      echo ' ';
-      echo $n->id_etat_note_de_frais;
-      // Update de Genos buggé, a revoir !
-	$n->Update();
-
-	echo 1;
+  case 'refuser_NDF':
+    $n = new note_de_frais;
+    $n->id = $id;
+    $n->Load();
+    $n->LoadForm();
+    $n->id_etat_note_de_frais = 3;
+    $n->Update();
   break;
 
 }
