@@ -150,8 +150,13 @@ Head("Gestion des notes de frais", 2);
       <?php if ($_SESSION['id_grp_user'] == 3) {?>
         <button class="btn btn-sm btn-success mt-4" @click="OuvrirModalAjout"><i class="fas fa-plus"></i> Ajouter</button>
       <?php }?>
-
-      <div class="table-responsive mt-4">
+      
+      <div class="text-right mt-4">
+        <i class="fas fa-hourglass-half fa-lg text-warning"></i> En attente | 
+        <i class="fas fa-check fa-lg text-success"></i> Acceptée | 
+        <i class="fas fa-ban fa-lg text-danger"></i> Refusée 
+      </div>
+      <div class="table-responsive">
         <table class="table table-hover table-stripped">
           <thead class="thead-dark">
             <tr class="text-center">
@@ -187,9 +192,9 @@ Head("Gestion des notes de frais", 2);
                 </a>
               </td>
               <td>
-                <i v-if="note_de_frais.id_etat_note_de_frais == 1" class="fas fa-hourglass-half fa-lg text-warning"></i>
-                <i v-else-if="note_de_frais.id_etat_note_de_frais == 2" class="fas fa-check fa-lg text-success"></i>
-                <i v-else class="fas fa-ban fa-lg text-danger"></i>
+                <i v-if="note_de_frais.id_etat_note_de_frais == 1" class="fas fa-hourglass-half fa-lg text-warning" data-toggle="tooltip" title="En attente"></i>
+                <i v-else-if="note_de_frais.id_etat_note_de_frais == 2" class="fas fa-check fa-lg text-success" data-toggle="tooltip" title="Acceptée"></i>
+                <i v-else class="fas fa-ban fa-lg text-danger" data-toggle="tooltip" title="Refusée"></i>
               </td>
               <?php if ($_SESSION['id_grp_user'] == 2 ) {?>
                 <td>

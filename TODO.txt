@@ -1,7 +1,7 @@
 Vérifier si connecté, et/ou rang quand join une page -> Done.
 
-Verifier que le nom modif ligue passe bien
-Légende module note de frais
+Verifier que le nom modif ligue passe bien -> Done.
+Légende module note de frais -> A vérifier mais devrait être bon.
 
 Empêcher l'upload de certain format / tailles
 Limiter la taille des input en fonction du champ
