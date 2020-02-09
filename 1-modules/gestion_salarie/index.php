@@ -1,6 +1,6 @@
 <?php include('../../0-config/config-genos.php'); 
-if($_SESSION['id_grp_user'] > 2) header('Location:'.RACINE_GLOBAL_RELATIF.'index.php');
-if($_SESSION['id_ligue'] == 0) header('Location:'.RACINE_GLOBAL_RELATIF.'index.php');
+$test_validitee = (empty($_SESSION) || $_SESSION['id_grp_user'] != 2 || $_SESSION['id_ligue'] == 0);
+if($test_validitee) header('Location:'.RACINE_GLOBAL_RELATIF.'index.php');
 ?>
 <?php Head('Gestion des ligues', 3); ?>
 	<main id="app">

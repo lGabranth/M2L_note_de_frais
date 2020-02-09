@@ -1,4 +1,4 @@
-Vérifier si connecté, et/ou rang quand join une page
+Vérifier si connecté, et/ou rang quand join une page -> Done.
 
 Verifier que le nom modif ligue passe bien
 Légende module note de frais

@@ -1,5 +1,5 @@
 <?php include('../../0-config/config-genos.php');
-if($_SESSION['id_grp_user'] != 1) header('Location:'.RACINE_GLOBAL_RELATIF.'index.php');
+if(empty($_SESSION) || $_SESSION['id_grp_user'] != 1) header('Location:'.RACINE_GLOBAL_RELATIF.'index.php');
 ?>
 <?php Head("Gestion des directeurs", 3);?>
 

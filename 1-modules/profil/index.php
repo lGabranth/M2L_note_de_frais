@@ -1,4 +1,6 @@
-<?php include('../../0-config/config-genos.php'); ?>
+<?php include('../../0-config/config-genos.php'); 
+if(empty($_SESSION) || $_SESSION['id_grp_user'] == 1) header('Location:'.RACINE_GLOBAL_RELATIF.'index.php');
+?>
 <?php Head('Mon profil', 4) ?>
 <?php 
 	$u = new utilisateur;

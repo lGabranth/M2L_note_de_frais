@@ -1,6 +1,6 @@
 <!-- Appel du fichier de config Genos ainsi que de la fonctio header + sécurité pour empécher l'admin d'accéder a cette page -->
 <?php include('../../0-config/config-genos.php');
-if($_SESSION['id_grp_user'] == 1) header('Location:'.RACINE_GLOBAL_RELATIF.'index.php');
+if(empty($_SESSION) || $_SESSION['id_grp_user'] == 1) header('Location:'.RACINE_GLOBAL_RELATIF.'index.php');
 Head("Gestion des notes de frais", 2);
 ?>
 <main id="app" v-cloak>
