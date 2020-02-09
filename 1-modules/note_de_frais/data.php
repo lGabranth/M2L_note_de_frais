@@ -5,9 +5,6 @@ $cas = (isset($_GET['cas'])  && !empty($_GET['cas']))  ? $_GET['cas']  : '';
 $id = (isset($_POST['id']) && !empty($_POST['id'])) ? $_POST['id'] : '';
 $path_image = (isset($_POST['path_image']) && !empty($_POST['path_image'])) ? $_POST['path_image'] : '';
 $commentaire = (isset($_POST['commentaire']) && !empty($_POST['commentaire'])) ? $_POST['commentaire'] : '';
-$montant = (isset($_POST['montant']) && !empty($_POST['montant'])) ? $_POST['montant'] : '';
-$id_type_note_de_frais = (isset($_POST['id_type_note_de_frais']) && !empty($_POST['id_type_note_de_frais'])) ? $_POST['id_type_note_de_frais'] : '';
-$id_etat_note_de_frais = (isset($_POST['id_etat_note_de_frais']) && !empty($_POST['id_etat_note_de_frais'])) ? $_POST['id_etat_note_de_frais'] : '';
 
 switch ($cas) {
 
