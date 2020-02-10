@@ -55,7 +55,7 @@ var vue = new Vue({
             var total = 0;
             for(let i = 0 ; i < resTmp3.length ; i++){
                 if(resTmp3[i].id_etat_note_de_frais == 2){
-                    total += parseInt(resTmp3[i].montant);
+                    total += parseFloat(resTmp3[i].montant);
                 }
             }
             this.total_rembourse = total;
