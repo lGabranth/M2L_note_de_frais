@@ -3,9 +3,9 @@ Vérifier si connecté, et/ou rang quand join une page -> Done.
 Verifier que le nom modif ligue passe bien -> Done.
 Légende module note de frais -> A vérifier mais devrait être bon.
 
-Empêcher l'upload de certain format / tailles
-Limiter la taille des input en fonction du champ
-Quand on valide, attente pour éviter le spam
+Empêcher l'upload de certain format / tailles -> Done.
+Limiter la taille des input en fonction du champ -> NDF;Profil;
+Quand on valide, attente pour éviter le spam -> NDF;Profil;
 
 Ajouter un trigger sur la connexion (table_log -> date/heure, utilisateur)
 

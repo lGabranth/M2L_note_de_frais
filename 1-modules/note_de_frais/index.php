@@ -15,14 +15,14 @@ Head("Gestion des notes de frais", 2);
           </button>
         </div>
         <!-- Corps du modal d'ajout -->
-        <form method="POST" enctype="multipart/form-data" id="fileUploadForm">
+        <form method="POST" enctype="multipart/form-data" id="fileUploadForm" @submit.prevent="onSubmit">
           <div class="modal-body">
            <div class="container-fluid">
             <div class="row">
              <div class="col">
 
               <label for="libelle" class="mt-3">Libelle de la note de frais</label>
-              <input type="text" class="form-control form-control-sm" id="libelle" v-model="ajout.libelle">
+              <input type="text" class="form-control form-control-sm" id="libelle" v-model="ajout.libelle" maxlength="50">
 
               <label for="montant" class="mt-3">Montant de la note de frais</label>
               <input type="number" class="form-control form-control-sm" id="montant" v-model="ajout.montant">
@@ -41,7 +41,12 @@ Head("Gestion des notes de frais", 2);
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Annuler</button>
-        <button v-show="ajout.libelle != '' && (ajout.montant != '' && ajout.montant > 0) && ajout.id_type_note_de_frais > 0" type="submit" class="btn btn-sm btn-success" @click="AjoutNote">Ajouter</button>
+        <div v-if="ajout_en_cours == 0">
+          <button v-show="ajout.libelle != '' && (ajout.montant != '' && ajout.montant > 0) && ajout.id_type_note_de_frais > 0" type="submit" class="btn btn-sm btn-success" @click="AjoutNote">Ajouter</button>
+        </div>
+        <div v-else class="spinner-border text-primary" role="status">
+          <span class="sr-only">Ajout...</span>
+        </div>
       </div>
     </form>
   </div>
