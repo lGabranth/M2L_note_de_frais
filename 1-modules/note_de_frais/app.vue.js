@@ -17,6 +17,8 @@ var vue = new Vue({
         recherche:'',
         rech_type:0,
         total_rembourse:0,
+
+        ajout_en_cours:0,
     },
     mounted(){
         this.GetListeTypeNDF();
@@ -121,15 +123,16 @@ var vue = new Vue({
 
         AjoutNote:function(){
             var scope = this;
-            $("#fileUploadForm").submit(function(e) {
-                e.preventDefault();
-            });
+            // $("#fileUploadForm").submit(function(e) {
+            //     e.preventDefault();
+            // });
             // A modifier, il faut trouver un moyen d'upload la photo
 			var test = (scope.ajout.libelle == '' || scope.ajout.montant == '')
 			if(test){
 				Notify('info','Veuillez saisir les informations de connexion.');
 				return;
             }
+            scope.ajout_en_cours = 1;
             
             var form_data = new FormData();
             var img = $('#inputImg')[0].files[0];
@@ -145,6 +148,8 @@ var vue = new Vue({
                 contentType: false,
 				data:form_data,
 				success:function(res){
+                    if(res == -3) Notify('warning','Le fichier sélectionné est trop volumineux');
+                    if(res == -2) Notify('warning','Type de fichier non-autorisé');
 					if(res == -1) Notify('warning','Veuillez sélectionner un fichier');
                     if(res == 1){
                         Notify('success','N2F ajoutée');
@@ -155,6 +160,7 @@ var vue = new Vue({
                         scope.ajout.montant               = 0;
                         scope.ajout.id_type_note_de_frais = 0;
                     }
+                    scope.ajout_en_cours = 0;
 				},
 				error:function(){
 				}

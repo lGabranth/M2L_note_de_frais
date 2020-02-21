@@ -10,6 +10,7 @@ var vue = new Vue({
 		},
 		modif:{},
 		suppr:{},
+		ajout_en_cours: 0,
 	},
 	mounted(){
 		this.GetListeLigue();
@@ -77,6 +78,7 @@ var vue = new Vue({
 				Notify('info','Veuillez saisir un nom');
 				return;
 			}
+			scope.ajout_en_cours = 1;
 
 			$.ajax({
 				url:"data.php?cas=ajout_ligue",
@@ -94,6 +96,7 @@ var vue = new Vue({
 						$('#modal_ajout').modal('hide');
 						scope.GetListeUtilisateur();
 					}
+					scope.ajout_en_cours = 0;
 				},
 				error:function(){
 				}

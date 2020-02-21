@@ -17,6 +17,7 @@ const gestion_salarie = new Vue({
 
 		verif_dispo_login:0,
 		date_du_jour:'',
+		ajout_en_cours:0,
 	},
 	mounted(){
 		this.GetListeSalarie();
@@ -90,6 +91,7 @@ const gestion_salarie = new Vue({
 				return;
 			}
 			var scope = this;
+			scope.ajout_en_cours = 1;
 
 			$.ajax({
 				url:"data.php?cas=ajout_salarie",
@@ -109,6 +111,7 @@ const gestion_salarie = new Vue({
 						scope.ajout.vacataire     =  0;
 						scope.ajout.date_validite = scope.date_du_jour;
 					}
+					scope.ajout_en_cours = 0;
 				},
 				error:function(){
 					Notify('danger','Veuillez prévenir votre administrateur de cette erreur');

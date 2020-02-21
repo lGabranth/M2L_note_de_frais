@@ -99,8 +99,7 @@ switch ($cas) {
 				$tab = $l_ancienne_ligue_new_directeur->Find(array('id_utilisateur'=>$id_utilisateur));
 				#On vérifie quand même que ce ne soit pas le même directeur
 				if(count($tab) > 0){
-					if($tab[0]['id'] == $id) break;
-					else{
+					if($tab[0]['id'] != $id){
 						$l3 = new ligue;
 						$l3->id = $tab[0]['id'];
 						$l3->Load();
@@ -110,8 +109,8 @@ switch ($cas) {
 				}
 			}
 			$u_nouveau_directeur->Update();
-			$l->Update();
 		}
+		$l->Update();
 	break;
 
 	case 'suppr_ligue':

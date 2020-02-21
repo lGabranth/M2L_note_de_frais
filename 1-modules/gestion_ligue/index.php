@@ -1,5 +1,5 @@
 <?php include('../../0-config/config-genos.php'); 
-if($_SESSION['id_grp_user'] != 1) header('Location:'.RACINE_GLOBAL_RELATIF.'index.php');
+if(empty($_SESSION) || $_SESSION['id_grp_user'] != 1) header('Location:'.RACINE_GLOBAL_RELATIF.'index.php');
 ?>
 <?php Head('Gestion des ligues', 2); ?>
 	<main id="app">
@@ -18,7 +18,7 @@ if($_SESSION['id_grp_user'] != 1) header('Location:'.RACINE_GLOBAL_RELATIF.'inde
 		        	<div class="row">
 		        		<div class="col">
 		        			<label for="">Nom de la ligue</label>
-		        			<input type="text" class="form-control form-control-sm" v-model="ajout.nom">
+		        			<input type="text" class="form-control form-control-sm" v-model="ajout.nom" maxlength="50">
 
 		        			<label class="mt-3" for="select_directeur_ajout">Directeur : </label>
 		        			<select name="select_directeur_ajout" id="select_directeur_ajout" class="custom-select custom-select-sm" v-model="ajout.id_utilisateur">
@@ -36,7 +36,12 @@ if($_SESSION['id_grp_user'] != 1) header('Location:'.RACINE_GLOBAL_RELATIF.'inde
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Annuler</button>
-		        <button v-show="ajout.nom != ''" type="button" class="btn btn-sm btn-success" @click="AjoutLigue">Ajouter</button>
+		        <div v-if="ajout_en_cours == 0">
+		        	<button v-show="ajout.nom != ''" type="button" class="btn btn-sm btn-success" @click="AjoutLigue">Ajouter</button>
+		        </div>
+		        <div v-else class="spinner-border text-primary" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
 		      </div>
 		    </div>
 		  </div>
@@ -57,7 +62,7 @@ if($_SESSION['id_grp_user'] != 1) header('Location:'.RACINE_GLOBAL_RELATIF.'inde
 		        	<div class="row">
 		        		<div class="col">
 		        			<label for="">Nom de la ligue</label>
-		        			<input type="text" class="form-control form-control-sm" v-model="modif.nom">
+		        			<input type="text" class="form-control form-control-sm" v-model="modif.nom" maxlength="50">
 
 		        			<label class="mt-3" for="select_directeur_modif">Directeur : </label>
 		        			<select name="select_directeur_modif" id="select_directeur_modif" class="custom-select custom-select-sm" v-model="modif.id_utilisateur">

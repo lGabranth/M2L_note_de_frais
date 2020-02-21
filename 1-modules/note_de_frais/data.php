@@ -55,12 +55,26 @@ switch ($cas) {
       return;
     }
 
+    $fileSize = $_FILES['file']['size'];
+    $tailleMaxUpload = GetTailleMaxUpload();
+    if($_FILES['file']['error'] == 1 || $fileSize > $tailleMaxUpload){
+      echo -3;
+      return;
+    }
+
     #Si jamais l'utilisateur n'a pas de dossier de stockage, on lui en fait un.
     $path_dossier_salarie = RACINE_GLOBAL_RELATIF.'DATAS/'.$_SESSION['id_user'];
     if(!file_exists($path_dossier_salarie)) mkdir($path_dossier_salarie, '0755');
 
-    $extension = explode('.', $_FILES['file']['name'])[1];
+    $extension = strtolower(explode('.', $_FILES['file']['name'])[1]);
     $nom_fichier = 'NDF_'.$_SESSION['nom_user'].'_'.$_SESSION['prenom_user'].'_'.date("Y-m-d-H-i-s").'.'.$extension;
+
+    // $fileSize = @getimagesize($_FILES['file']['tmp_name']); //Pour vérifier le mime, et donc le vrai type
+    $extensions_autorisees = array('pdf','png','jpg','jpeg');
+    if(!in_array($extension, $extensions_autorisees)){
+      echo -2;
+      return;
+    }
 
     $path_final = $path_dossier_salarie.'/'.$nom_fichier;
     move_uploaded_file($_FILES['file']['tmp_name'], $path_final);

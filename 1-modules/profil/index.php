@@ -1,4 +1,6 @@
-<?php include('../../0-config/config-genos.php'); ?>
+<?php include('../../0-config/config-genos.php'); 
+if(empty($_SESSION) || $_SESSION['id_grp_user'] == 1) header('Location:'.RACINE_GLOBAL_RELATIF.'index.php');
+?>
 <?php Head('Mon profil', 4) ?>
 <?php 
 	$u = new utilisateur;
@@ -59,7 +61,7 @@
 							<input type="text" id="groupe_user" class="form-control form-control-sm" readonly v-model="elem.groupe_utilisateur">
 
 							<label for="nom" class="mt-3">Nom : </label>
-							<input type="text" id="nom" class="form-control form-control-sm" v-model="elem.nom">
+							<input type="text" id="nom" class="form-control form-control-sm" v-model="elem.nom" maxlength="50">
 
 							<label for="login" class="mt-3">Login : </label>
 							<input type="text" id="login" class="form-control form-control-sm" v-model="elem.login" readonly>
@@ -70,7 +72,7 @@
 							<input type="text" id="ligue" class="form-control form-control-sm" v-model="elem.ligue" readonly>
 
 							<label for="prenom" class="mt-3">Prénom : </label>
-							<input type="text" id="prenom" class="form-control form-control-sm" v-model="elem.prenom">
+							<input type="text" id="prenom" class="form-control form-control-sm" v-model="elem.prenom" maxlength="50">
 
 							<label for="password" class="mt-3">Mot de passe : </label>
 							<input type="password" id="password" class="form-control form-control-sm" value="tusauraspascestcrypté" readonly>

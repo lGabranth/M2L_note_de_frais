@@ -110,3 +110,35 @@ function Footer($path_supplementaire = '', $menu_present = 1){ ?>
   </body>
 </html>
 <?php }
+
+function return_bytes($valeur){
+	$valeur = trim($valeur);
+	$dernier_char = strtolower($valeur[strlen($valeur)-1]);
+
+	$valeur = substr($valeur, 0, (strlen($valeur)-1));
+	switch ($dernier_char) {
+		case 'g':
+			$valeur *= 1024;
+		break;
+
+		case 'm':
+			$valeur *= 1024;
+		break;
+
+		case 'k':
+			$valeur *= 1024;
+		break;
+	}
+	return $valeur;
+}
+
+function GetTailleMaxUpload(){
+	//Taille max d'un upload
+	$max_upload = return_bytes(ini_get('upload_max_filesize'));
+	//Taille maximum d'un $_POST
+	$max_post = return_bytes(ini_get('post_max_size'));
+	//Limite mémoire
+	$limite_memoire = return_bytes(ini_get('memory_limit'));
+
+	return min($max_upload, $max_post, $limite_memoire)*1000;
+}

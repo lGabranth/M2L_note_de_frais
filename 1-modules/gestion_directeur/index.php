@@ -1,5 +1,5 @@
 <?php include('../../0-config/config-genos.php');
-if($_SESSION['id_grp_user'] != 1) header('Location:'.RACINE_GLOBAL_RELATIF.'index.php');
+if(empty($_SESSION) || $_SESSION['id_grp_user'] != 1) header('Location:'.RACINE_GLOBAL_RELATIF.'index.php');
 ?>
 <?php Head("Gestion des directeurs", 3);?>
 
@@ -20,12 +20,12 @@ if($_SESSION['id_grp_user'] != 1) header('Location:'.RACINE_GLOBAL_RELATIF.'inde
 		        	<div class="row">
 		        		<div class="col">
 		        			<label for="">Nom du directeur</label>
-		        			<input type="text" class="form-control form-control-sm" v-model="ajout.nom">
+		        			<input type="text" class="form-control form-control-sm" v-model="ajout.nom" maxlength="50">
                   <label for="" class="mt-3">Prénom du directeur</label>
-		        			<input type="text" class="form-control form-control-sm" v-model="ajout.prenom">
-                  <label for="" class="mt-3">Login du directeur</label>
-		        			<input type="text" class="form-control form-control-sm" v-model="ajout.login">
-                  <label for="" class="mt-3">Password du directeur</label>
+		        			<input type="text" class="form-control form-control-sm" v-model="ajout.prenom" maxlength="50">
+                  <label for="" class="mt-3">Identifiant de connexion du directeur</label>
+		        			<input type="text" class="form-control form-control-sm" v-model="ajout.login" maxlength="50">
+                  <label for="" class="mt-3">Mot de passe du directeur</label>
 		        			<input type="password" class="form-control form-control-sm" v-model="ajout.password">
 		        		</div>
 		        	</div>
@@ -33,7 +33,12 @@ if($_SESSION['id_grp_user'] != 1) header('Location:'.RACINE_GLOBAL_RELATIF.'inde
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Annuler</button>
-		        <button v-show="ajout.password != '' && ajout.nom != '' && ajout.prenom != '' && ajout.login != ''" type="button" class="btn btn-sm btn-success" @click="AjoutDirecteur">Ajouter</button>
+		        <div v-if="ajout-en-cours == 0">
+		        	<button v-show="ajout.password != '' && ajout.nom != '' && ajout.prenom != '' && ajout.login != ''" type="button" class="btn btn-sm btn-success" @click="AjoutDirecteur">Ajouter</button>
+		        </div>
+		        <div v-else class="spinner-border text-primary" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
 		      </div>
 		    </div>
 		  </div>
@@ -54,9 +59,9 @@ if($_SESSION['id_grp_user'] != 1) header('Location:'.RACINE_GLOBAL_RELATIF.'inde
 		        	<div class="row">
 		        		<div class="col">
 		        			<label for="">Nom du directeur</label>
-		        			<input type="text" class="form-control form-control-sm" v-model="modif.nom">
+		        			<input type="text" class="form-control form-control-sm" v-model="modif.nom" maxlength="50">
                             <label for="">Prénom du directeur</label>
-		        			<input type="text" class="form-control form-control-sm" v-model="modif.prenom">
+		        			<input type="text" class="form-control form-control-sm" v-model="modif.prenom" maxlength="50">
 		        		</div>
 		        	</div>
 		        </div>
