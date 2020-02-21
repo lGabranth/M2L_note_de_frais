@@ -25,6 +25,7 @@ class connexion{
 		$_SESSION['nom_user'] = $u->nom;
 		$_SESSION['prenom_user'] = $u->prenom;
 		$_SESSION['id_grp_user'] = $u->id_groupe_utilisateur;
+		config_utilisateur::ChargerConfigUtilisateur($u->id);
 		header('Location:index.php');
 	}
 

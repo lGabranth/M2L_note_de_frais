@@ -16,6 +16,11 @@ function Head($titre, $menu){ ?>
     <link rel="stylesheet" href="<?php echo RACINE_GLOBAL_RELATIF ?>css/animate.min.css">
     <link rel="stylesheet" href="<?php echo RACINE_GLOBAL_RELATIF ?>css/notify.css">
     <link rel="stylesheet" href="<?php echo RACINE_GLOBAL_RELATIF ?>css/all.css">
+    <style>
+    	body{
+    		background: linear-gradient(to left, <?php echo isset($_SESSION['couleur1']) ? $_SESSION['couleur1'] : '#071B52'; ?> 0%, <?php echo isset($_SESSION['couleur2']) ? $_SESSION['couleur2'] : '#008080'; ?> 100%);
+    	}
+    </style>
   </head>
   <body>
   	<?php if($menu > 0) Menu($menu); ?>
@@ -75,7 +80,8 @@ function Menu($menu){ ?>
 	    	<?php if($_SESSION["id_grp_user"] != 1) {?>
 	    		<a href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/profil" data-toggle="tooltip" data-placement="bottom" title="Profil"><i class="fas fa-user fa-lg <?php echo ($menu == 4) ? 'text-white' : 'text-info' ?>"></i></a> &nbsp;
 	    	<?php } ?>
-	    	<a href="#" @click="Deconnexion" data-toggle="tooltip" data-placement="bottom" title="Se déconnecter"><i class="fas fa-power-off text-danger fa-lg"></i></a>
+	    	<a href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/config_utilisateur" data-toggle="tooltip" data-placement="bottom" title="Changer le thème"><i class="fas fa-palette fa-lg <?php echo ($menu == 5) ? 'text-white' : 'text-secondary' ?>"></i></a>
+	    	<a href="#" @click="Deconnexion" class="ml-2" data-toggle="tooltip" data-placement="bottom" title="Se déconnecter"><i class="fas fa-power-off text-danger fa-lg"></i></a>
 	    </div>
 	    <!-- <form class="form-inline my-2 my-lg-0">
 	      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
