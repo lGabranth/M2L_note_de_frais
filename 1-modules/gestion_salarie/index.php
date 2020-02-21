@@ -19,17 +19,33 @@ if($test_validitee) header('Location:'.RACINE_GLOBAL_RELATIF.'index.php');
 		        	<div class="row">
 		        		<div class="col">
 		        			<label for="nom">Nom <sup class="text-danger">*</sup> : </label>
-		        			<input type="text" class="form-control form-control-sm" id="nom" v-model="ajout.nom" :placeholder="'Nom du '+[(ajout.vacataire == 0) ? 'salarié' : 'vacataire']">
+		        			<input type="text" class="form-control form-control-sm" id="nom" v-model="ajout.nom" :placeholder="'Nom du '+[(ajout.vacataire == 0) ? 'salarié' : 'vacataire']" maxlength="50">
+		        		</div>
+		        		<div class="col">
+		        			<label for="prenom">Prénom <sup class="text-danger">*</sup> : </label>
+		        			<input type="text" class="form-control form-control-sm" id="prenom" v-model="ajout.prenom" :placeholder="'Prénom du '+[(ajout.vacataire == 0) ? 'salarié' : 'vacataire']" maxlength="50">
+		        		</div>
+		        	</div>
 
-		        			<label for="login" class="mt-3">Login <sup class="text-danger">*</sup> : </label>
-		        			<input type="text" class="form-control form-control-sm" id="login" v-model="ajout.login" placeholder="Identifiant de connexion">
+		        	<div class="row mt-3">
+		        		<div class="col">
+		        			<label for="login">Login <sup class="text-danger">*</sup> : </label>
+		        			<input type="text" class="form-control form-control-sm" id="login" v-model="ajout.login" placeholder="Identifiant de connexion" maxlength="50">
 		        			<div class="ml-1">
 		        				<small v-show="verif_dispo_login == 0">Veuillez saisir un login</small>
 		        				<small v-show="verif_dispo_login == -1" class="text-danger">Ce login n'est pas disponible</small>
 		        				<small v-show="verif_dispo_login == 1" class="text-success">Ce login est disponible</small>
 		        			</div>
-									
-									<div class="text-center mt-5">
+		        		</div>
+		        		<div class="col">
+		        			<label for="password">Mot de passe <sup class="text-danger">*</sup> : </label>
+		        			<input type="password" class="form-control form-control-sm" id="password" v-model="ajout.password" placeholder="Mot de passe de connexion">
+		        		</div>
+		        	</div>
+
+		        	<div class="row">
+		        		<div class="col mt-5">									
+									<div class="text-center">
 										<div class="btn-group">
 											<button :class="'btn btn-sm '+[(ajout.vacataire == 0) ? 'btn-primary' : 'btn-outline-primary']" @click="ChangerValeurVacataire(0, 'crea')">
 												Salarié
@@ -40,13 +56,7 @@ if($test_validitee) header('Location:'.RACINE_GLOBAL_RELATIF.'index.php');
 										</div>
 									</div>
 		        		</div>
-		        		<div class="col">
-		        			<label for="prenom">Prénom <sup class="text-danger">*</sup> : </label>
-		        			<input type="text" class="form-control form-control-sm" id="prenom" v-model="ajout.prenom" :placeholder="'Prénom du '+[(ajout.vacataire == 0) ? 'salarié' : 'vacataire']">
-
-		        			<label for="password" class="mt-3">Mot de passe <sup class="text-danger">*</sup> : </label>
-		        			<input type="password" class="form-control form-control-sm" id="password" v-model="ajout.password" placeholder="Mot de passe de connexion">
-									
+		        		<div class="col">									
 									<div v-show="ajout.vacataire == 1">
 		        				<label for="" class="mt-3">Date limite de validité du compte : </label>
 										<input type="date" v-model="ajout.date_validite" class="form-control form-control-sm">
@@ -68,7 +78,12 @@ if($test_validitee) header('Location:'.RACINE_GLOBAL_RELATIF.'index.php');
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Annuler</button>
-		        <button v-show="verif_dispo_login == 1 && ajout.nom != '' && ajout.prenom != '' && ajout.password != ''" type="button" class="btn btn-sm btn-success" @click="AjouterUtilisateur">Ajouter</button>
+		        <div v-if="ajout_en_cours == 0">
+		        	<button v-show="verif_dispo_login == 1 && ajout.nom != '' && ajout.prenom != '' && ajout.password != ''" type="button" class="btn btn-sm btn-success" @click="AjouterUtilisateur">Ajouter</button>
+		        </div>
+		        <div v-else class="spinner-border text-primary" role="status">
+						  <span class="sr-only">Ajout...</span>
+						</div>
 		      </div>
 		    </div>
 		  </div>
@@ -89,11 +104,11 @@ if($test_validitee) header('Location:'.RACINE_GLOBAL_RELATIF.'index.php');
 		        	<div class="row">
 		        		<div class="col">
 		        			<label for="nom">Nom <sup class="text-danger">*</sup> : </label>
-		        			<input type="text" class="form-control form-control-sm" id="modif_nom" v-model="modif.nom" placeholder="Nom du salarié">
+		        			<input type="text" class="form-control form-control-sm" id="modif_nom" v-model="modif.nom" placeholder="Nom du salarié" maxlength="50">
 		        		</div>
 		        		<div class="col">
 		        			<label for="prenom">Prénom <sup class="text-danger">*</sup> : </label>
-		        			<input type="text" class="form-control form-control-sm" id="modif_prenom" v-model="modif.prenom" placeholder="Prénom du salarié">									
+		        			<input type="text" class="form-control form-control-sm" id="modif_prenom" v-model="modif.prenom" placeholder="Prénom du salarié" maxlength="50">									
 		        		</div>
 		        	</div>
 
