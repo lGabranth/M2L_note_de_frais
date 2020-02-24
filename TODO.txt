@@ -7,6 +7,8 @@ Empêcher l'upload de certain format / tailles -> Done.
 Limiter la taille des input en fonction du champ -> NDF;Profil;Gestion_Salarie;Gestion_Ligue;Gestion_Directeur. => Done.
 Quand on valide, attente pour éviter le spam -> NDF;Profil;Gestion_Salarie;Gestion_Ligue;Gestion_Directeur. => Done.
 
+Mettre à jour le script de la base de données -> Done
+
 Ajouter un trigger sur la connexion (table_log -> date/heure, utilisateur)
 
 Changer_type_stockage_mdp par password_hash/verify

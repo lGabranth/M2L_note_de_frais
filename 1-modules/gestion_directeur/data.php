@@ -42,7 +42,12 @@ switch ($cas) {
         // Cryptage du mdp
         $u->password = sha1(md5($login.$password));
         // Ajout de l'utilisateur en BDD
-		$u->Add();
+		$id_directeur = $u->Add();
+
+        $cu = new config_utilisateur;
+        $cu->id_utilisateur = $id_directeur;
+        $cu->Add();
+        
 		echo 1;
     break;
     

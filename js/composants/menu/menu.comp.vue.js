@@ -4,7 +4,8 @@ var Menu = new Vue({
 		nbAttente:0,
 	},
 	mounted(){
-		this.GetNbAttente();
+		var type_agent = $('#type-agent').val();
+		if(type_agent === 'manager') this.GetNbAttente();
 	},
 	methods:{
 		Deconnexion:function(){

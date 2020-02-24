@@ -33,7 +33,7 @@ if(empty($_SESSION) || $_SESSION['id_grp_user'] != 1) header('Location:'.RACINE_
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Annuler</button>
-		        <div v-if="ajout-en-cours == 0">
+		        <div v-if="ajout_en_cours == 0">
 		        	<button v-show="ajout.password != '' && ajout.nom != '' && ajout.prenom != '' && ajout.login != ''" type="button" class="btn btn-sm btn-success" @click="AjoutDirecteur">Ajouter</button>
 		        </div>
 		        <div v-else class="spinner-border text-primary" role="status">
@@ -112,7 +112,7 @@ if(empty($_SESSION) || $_SESSION['id_grp_user'] != 1) header('Location:'.RACINE_
                 </div>
             </div>
 
-            <div class="row mt-4">
+            <div class="row mt-4 mb-4">
                 <div class="col bloc">
                     <h3 class="mt-3">Gérer les directeurs</h3>
                     <hr>

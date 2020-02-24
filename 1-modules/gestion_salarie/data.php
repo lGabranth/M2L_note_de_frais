@@ -57,7 +57,12 @@ switch ($cas) {
 		$u->id_groupe_utilisateur = 3;
 		$u->password = sha1(md5($login.$password));
 
-		$u->Add();
+		$id_agent = $u->Add();
+
+		$cu = new config_utilisateur;
+		$cu->id_utilisateur = $id_agent;
+		$cu->Add();
+		
 		echo 1;
 	break;
 

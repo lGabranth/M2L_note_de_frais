@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 03 fév. 2020 à 12:32
+-- Généré le :  ven. 21 fév. 2020 à 14:03
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.2.18
 
@@ -21,6 +21,28 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `m2l_notes_de_frais`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `config_utilisateur`
+--
+
+DROP TABLE IF EXISTS `config_utilisateur`;
+CREATE TABLE IF NOT EXISTS `config_utilisateur` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_utilisateur` int(11) NOT NULL,
+  `couleur1` varchar(10) NOT NULL,
+  `couleur2` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `config_utilisateur`
+--
+
+INSERT INTO `config_utilisateur` (`id`, `id_utilisateur`, `couleur1`, `couleur2`) VALUES
+(1, 1, '#071b52', '#008080');
 
 -- --------------------------------------------------------
 
@@ -78,7 +100,8 @@ CREATE TABLE IF NOT EXISTS `ligue` (
   `nom` varchar(50) NOT NULL,
   `id_utilisateur` int(11) NOT NULL COMMENT 'id du directeur de la ligue',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
 
 -- --------------------------------------------------------
 
@@ -90,7 +113,7 @@ DROP TABLE IF EXISTS `note_de_frais`;
 CREATE TABLE IF NOT EXISTS `note_de_frais` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `libelle` varchar(50) NOT NULL,
-  `path_image` varchar(50) NOT NULL,
+  `path_image` varchar(150) NOT NULL,
   `commentaire` varchar(50) NOT NULL,
   `montant` double NOT NULL,
   `id_utilisateur` int(11) NOT NULL,
@@ -100,7 +123,8 @@ CREATE TABLE IF NOT EXISTS `note_de_frais` (
   KEY `note_de_frais_utilisateur_FK` (`id_utilisateur`),
   KEY `note_de_frais_type_note_de_frais0_FK` (`id_type_note_de_frais`),
   KEY `note_de_frais_etat_note_de_frais1_FK` (`id_etat_note_de_frais`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
 
 -- --------------------------------------------------------
 
@@ -138,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `nom` varchar(50) NOT NULL,
   `prenom` varchar(50) NOT NULL,
   `login` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `vacataire` tinyint(4) NOT NULL,
   `date_validite` datetime DEFAULT NULL,
   `id_groupe_utilisateur` int(11) NOT NULL,
@@ -152,7 +176,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `login`, `password`, `vacataire`, `date_validite`, `id_groupe_utilisateur`, `id_ligue`) VALUES
-(1, 'Administrateur', 'Utilisateur', 'admin', 'ec04321e2c7bf2e0b01bac41896796b19f22a244', 0, NULL, 1, 0);
+(1, 'Administrateur', 'Utilisateur', 'admin', 'ec04321e2c7bf2e0b01bac41896796b19f22a244', 0, NULL, 1, 0),
 
 --
 -- Contraintes pour les tables déchargées

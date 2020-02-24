@@ -125,7 +125,7 @@ if(empty($_SESSION) || $_SESSION['id_grp_user'] != 1) header('Location:'.RACINE_
 			<!-- <div class="row">
 				<div class="col separation"></div>
 			</div> -->
-			<div class="row mt-4">
+			<div class="row mt-4 mb-4">
 				<div class="col bloc">
 					<h3 class="mt-3">Gérer les ligues de la M2L</h3>
 					<hr>
