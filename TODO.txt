@@ -9,6 +9,9 @@ Quand on valide, attente pour éviter le spam -> NDF;Profil;Gestion_Salarie;Gest
 
 Mettre à jour le script de la base de données -> Done
 
+Module creer des types de note de frais
+Connexion bug quand première fois connexion (due à config_utilisateur) -> Done
+
 Ajouter un trigger sur la connexion (table_log -> date/heure, utilisateur)
 
 Changer_type_stockage_mdp par password_hash/verify

@@ -20,7 +20,10 @@ class config_utilisateur{
 		$cu = new config_utilisateur;
 		$config = $cu->Find(array('id_utilisateur'=>$id_utilisateur));
 
-		if(count($config) == 0) self::CreerConfigUtilisateurInitiale($id_utilisateur);
+		if(count($config) == 0){
+			self::CreerConfigUtilisateurInitiale($id_utilisateur);
+			self::ChargerConfigUtilisateur($id_utilisateur);
+		}
 		if(count($config) > 0){
 			$_SESSION['couleur1'] = $config[0]['couleur1'];
 			$_SESSION['couleur2'] = $config[0]['couleur2'];
