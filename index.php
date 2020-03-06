@@ -81,6 +81,19 @@ if(empty($_SESSION) || $_SESSION["id_user"] <= 0) header('Location:login.php');
 					</div>
 				</div>
 			<?php } ?>
+
+			<?php if($_SESSION['id_grp_user'] == 1) {?>
+				<div class="col-md mt-3">
+					<div class="card" id="card3">
+				  <div class="card-body">
+			    	<h5 class="card-title">Types NDF</h5>
+			    	<p class="card-text">Permet de créer/modifier/supprimer les types de notes de frais.</p>
+			    	<div class="text-right">
+			    		<a href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/gestion_type_note_de_frais" class="btn btn-degrade">Aller</a>
+			    	</div>
+					</div>
+				</div>
+			<?php } ?>
 		</div>
 	</div>
 <?php Footer(); ?>

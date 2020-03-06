@@ -64,6 +64,9 @@ function Menu($menu){ ?>
 		      <li class="nav-item">
 		        <a class="nav-link <?php echo ($menu == 3) ? 'active' : '' ?> " href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/gestion_directeur">Gestion des directeurs</a>
 		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link <?php echo ($menu == 6) ? 'active' : '' ?> " href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/gestion_type_note_de_frais">Gestion des types de NDF</a>
+		      </li>
 		    <?php } ?>
 	    </ul>
 	    <div class="my-2 my-lg-0">
@@ -84,10 +87,6 @@ function Menu($menu){ ?>
 	    	<a href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/config_utilisateur" data-toggle="tooltip" data-placement="bottom" title="Changer le thème"><i class="fas fa-palette fa-lg <?php echo ($menu == 5) ? 'text-white' : 'text-secondary' ?>"></i></a>
 	    	<a href="#" @click="Deconnexion" class="ml-2" data-toggle="tooltip" data-placement="bottom" title="Se déconnecter"><i class="fas fa-power-off text-danger fa-lg"></i></a>
 	    </div>
-	    <!-- <form class="form-inline my-2 my-lg-0">
-	      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-	      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-	    </form> -->
 	  </div>
 	</nav>
 <?php }
