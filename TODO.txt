@@ -11,7 +11,7 @@ TODO LIST
 | Quand on valide, attente pour éviter le spam                               |   ✔  	|
 | Mettre à jour le script de la base de données                              |   ✔  	|
 | Connexion bug quand première fois connexion (due à config_utilisateur)     |   ✔  	|
+| Module creer des types de note de frais                                    |   ✔  	|
 |                                                                            |        |
-| Module creer des types de note de frais                                    |   ✘  	|
 | Ajouter un trigger sur la connexion (table_log -> date/heure, utilisateur) |   ✘  	|
 | Changer_type_stockage_mdp par password_hash/verify                         |   ✘  	|
