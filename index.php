@@ -20,14 +20,14 @@ if(empty($_SESSION) || $_SESSION["id_user"] <= 0) header('Location:login.php');
 				    	<h5 class="card-title">Gestion des ligues</h5>
 				    	<p class="card-text">Permet de créer/modifier/supprimer des ligues.</p>
 				    	<div class="text-right">
-				    		<a href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/gestion_ligue" class="btn btn-degrade">Aller</a>
+				    		<a href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/gestion_ligue" class="btn btn-success">Aller</a>
 				    	</div>
 				  	<?php } ?>
 				  	<?php if($_SESSION['id_grp_user'] == 2 || $_SESSION['id_grp_user'] == 3) {?>
 				    	<h5 class="card-title">Gestion des note de frais</h5>
 				    	<p class="card-text">Permet de gérer <?php echo ($_SESSION['id_grp_user'] == 2) ? 'les' : 'mes' ?> notes de frais.</p>
 				    	<div class="text-right">
-				    		<a href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/note_de_frais" class="btn btn-degrade">Aller</a>
+				    		<a href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/note_de_frais" class="btn btn-success">Aller</a>
 				    	</div>
 				  	<?php } ?>
 					</div>
@@ -42,7 +42,7 @@ if(empty($_SESSION) || $_SESSION["id_user"] <= 0) header('Location:login.php');
 				    	<h5 class="card-title">Gestion des directeurs</h5>
 				    	<p class="card-text">Permet de créer/modifier/supprimer des directeurs.</p>
 				    	<div class="text-right">
-				    		<a href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/gestion_directeur" class="btn btn-degrade">Aller</a>
+				    		<a href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/gestion_directeur" class="btn btn-success">Aller</a>
 				    	</div>
 				  	<?php } ?>
 				  	<?php if($_SESSION['id_grp_user'] == 2) {?>
@@ -50,7 +50,7 @@ if(empty($_SESSION) || $_SESSION["id_user"] <= 0) header('Location:login.php');
 				    	<p class="card-text">Gérer les comptes des salariées.</p>
 				    	<?php if($_SESSION['id_ligue'] > 0) {?>
 					    	<div class="text-right">
-					    		<a href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/gestion_salarie" class="btn btn-degrade">Aller</a>
+					    		<a href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/gestion_salarie" class="btn btn-success">Aller</a>
 					    	</div>
 				    	<?php } else {?>
 				    		<div class="text-right">
@@ -62,7 +62,7 @@ if(empty($_SESSION) || $_SESSION["id_user"] <= 0) header('Location:login.php');
 				    	<h5 class="card-title">Mon profil</h5>
 				    	<p class="card-text">Voir et modifier mon profil.</p>
 				    	<div class="text-right">
-				    		<a href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/profil" class="btn btn-degrade">Aller</a>
+				    		<a href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/profil" class="btn btn-success">Aller</a>
 				    	</div>
 				  	<?php } ?>
 				  </div>
@@ -76,7 +76,7 @@ if(empty($_SESSION) || $_SESSION["id_user"] <= 0) header('Location:login.php');
 			    	<h5 class="card-title">Mon profil</h5>
 			    	<p class="card-text">Voir et modifier mon profil.</p>
 			    	<div class="text-right">
-			    		<a href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/profil" class="btn btn-degrade">Aller</a>
+			    		<a href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/profil" class="btn btn-success">Aller</a>
 			    	</div>
 					</div>
 				</div>
@@ -89,7 +89,7 @@ if(empty($_SESSION) || $_SESSION["id_user"] <= 0) header('Location:login.php');
 			    	<h5 class="card-title">Types NDF</h5>
 			    	<p class="card-text">Permet de créer/modifier/supprimer les types de notes de frais.</p>
 			    	<div class="text-right">
-			    		<a href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/gestion_type_note_de_frais" class="btn btn-degrade">Aller</a>
+			    		<a href="<?php echo RACINE_GLOBAL_RELATIF ?>1-modules/gestion_type_note_de_frais" class="btn btn-success">Aller</a>
 			    	</div>
 					</div>
 				</div>
