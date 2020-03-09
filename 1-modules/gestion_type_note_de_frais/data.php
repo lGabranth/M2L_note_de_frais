@@ -2,7 +2,7 @@
 
 <?php 
 $cas = (isset($_GET['cas'])  && !empty($_GET['cas']))  ? $_GET['cas']  : '';
-$libelle = (isset($_POST['type_note_de_frais']) && !empty($_POST['type_note_de_frais'])) ? $_POST['type_note_de_frais'] : "";
+$libelle = (isset($_POST['type_note_de_frais']) && !empty($_POST['type_note_de_frais'])) ? strtoupper($_POST['type_note_de_frais']) : "";
 
 switch ($cas) {
   case 'liste_type_ndf':
@@ -16,7 +16,7 @@ switch ($cas) {
       return;
     }
 
-    $t->LoadForm();
+    $t->type_note_de_frais = $libelle;
     if($t->Add() > 0) echo 1;
     else echo 0;
   break;
@@ -37,7 +37,7 @@ switch ($cas) {
       return;
     }
 
-    $t->LoadForm();
+    $t->type_note_de_frais = $libelle;
     $t->Update();
     echo 1;
   break;
