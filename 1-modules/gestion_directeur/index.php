@@ -60,7 +60,7 @@ if(empty($_SESSION) || $_SESSION['id_grp_user'] != 1) header('Location:'.RACINE_
 		        		<div class="col">
 		        			<label for="">Nom du directeur</label>
 		        			<input type="text" class="form-control form-control-sm" v-model="modif.nom" maxlength="50">
-                            <label for="">Prénom du directeur</label>
+                  <label for="" class="mt-3">Prénom du directeur</label>
 		        			<input type="text" class="form-control form-control-sm" v-model="modif.prenom" maxlength="50">
 		        		</div>
 		        	</div>
