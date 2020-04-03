@@ -11,7 +11,7 @@ function Head($titre, $menu){ ?>
 
     <!-- Bootstrap CSS -->
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo RACINE_GLOBAL_RELATIF ?>css/bootstrap.css">
+    <link rel="stylesheet" href="<?php echo RACINE_GLOBAL_RELATIF ?>css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo RACINE_GLOBAL_RELATIF ?>css/style.css">
     <link rel="stylesheet" href="<?php echo RACINE_GLOBAL_RELATIF ?>css/animate.min.css">
     <link rel="stylesheet" href="<?php echo RACINE_GLOBAL_RELATIF ?>css/notify.css">
@@ -30,7 +30,7 @@ function Menu($menu){ ?>
 	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgba(36, 36, 36, 0.6);" id="menu" v-cloak>
 		<input type="hidden" id="type-agent" value="<?php echo ($_SESSION['id_grp_user'] == 2) ? 'manager' : 'autre' ?>">
 	  <a class="navbar-brand <?php echo ($menu == 1) ? 'active' : 'text-white-50'; ?>" href="<?php echo RACINE_GLOBAL_RELATIF ?>index.php">
-	  	<img src="<?php echo RACINE_GLOBAL_RELATIF ?><?php echo ($menu == 1) ? 'logo_on.svg' : 'logo.svg' ?>" alt="N2F">
+	  	<img src="<?php echo RACINE_GLOBAL_RELATIF ?>img/<?php echo ($menu == 1) ? 'logo_on.svg' : 'logo.svg' ?>" alt="N2F">
 	  	<!-- N2F -->
 	  </a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,8 +100,8 @@ function Footer($path_supplementaire = '', $menu_present = 1){ ?>
     <script src="<?php echo RACINE_GLOBAL_RELATIF ?>js/lodash.js"></script>
 		<script src="<?php echo RACINE_GLOBAL_RELATIF ?>js/notify.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="<?php echo RACINE_GLOBAL_RELATIF ?>js/bootstrap.js"></script>
-    <script src="<?php echo RACINE_GLOBAL_RELATIF ?>js/vue.js"></script>
+    <script src="<?php echo RACINE_GLOBAL_RELATIF ?>js/bootstrap.min.js"></script>
+    <script src="<?php echo RACINE_GLOBAL_RELATIF ?>js/vue.min.js"></script>
     <?php if($menu_present == 1) {?>
     	<script src="<?php echo RACINE_GLOBAL_RELATIF ?>js/composants/menu/menu.comp.vue.js"></script>
   	<?php } ?>
